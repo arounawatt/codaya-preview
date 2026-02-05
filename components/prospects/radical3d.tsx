@@ -3,35 +3,16 @@
 import { useState, useEffect, useRef, FormEvent, ReactNode, CSSProperties } from 'react'
 
 // ============================================================
-// MR LEROY URGENCES - Plombier Compagnon de France
+// RADICAL 3D - Dératisation, Désinsectisation, Désinfection
 // Composant autonome pour architecture Next.js multi-tenant
 // ============================================================
-
-interface ServiceItem {
-  icon: string
-  title: string
-  desc: string
-}
-
-interface TestimonialItem {
-  initials: string
-  name: string
-  date: string
-  text: string
-}
-
-interface TrustItem {
-  icon: string
-  title: string
-  desc: string
-}
 
 interface AnimatedCardProps {
   children: ReactNode
   delay?: number
 }
 
-export default function MrLeroyUrgences() {
+export default function Radical3D() {
   const [scrolled, setScrolled] = useState<boolean>(false)
   const [formData, setFormData] = useState<{ name: string; phone: string; message: string }>({
     name: '',
@@ -59,53 +40,54 @@ export default function MrLeroyUrgences() {
   // CONFIGURATION DU CLIENT
   // ============================================================
   const config = {
-    name: 'Mr Leroy Urgences',
-    tagline: 'Compagnon de France',
-    phone: '06 66 69 73 92',
-    phoneTel: '+33666697392',
-    rating: '4,8',
-    reviewCount: 169,
+    name: 'Radical 3D',
+    tagline: 'Dératisation • Désinsectisation • Désinfection',
+    phone: '01 64 58 48 80',
+    phoneTel: '+33164584880',
+    rating: '4,1',
+    reviewCount: 7,
     zone: 'Île-de-France',
-    googleReviewsUrl: 'https://www.google.com/search?q=mr+leroy+urgences',
+    googleReviewsUrl: 'https://www.google.com/search?q=Radical+3D',
   }
 
-  const services: ServiceItem[] = [
-    { icon: '🚨', title: "Dépannage d'urgence", desc: "Intervention rapide 24h/24 pour fuites d'eau, fuites de gaz et tous problèmes urgents. Sécurisation immédiate de votre installation." },
-    { icon: '🔧', title: 'Réparation plomberie', desc: 'Réparation de fuites, robinetterie, éviers, lavabos et WC. Diagnostic précis et solutions durables.' },
-    { icon: '🌡️', title: "Ballon d'eau chaude", desc: "Installation, remplacement et réparation de chauffe-eau. Conseils personnalisés pour un équipement adapté." },
-    { icon: '🔥', title: 'Chaudière & chauffage', desc: 'Entretien annuel, réparation de pannes et mise en conformité. Expertise sur toutes marques.' },
-    { icon: '🚿', title: 'Débouchage', desc: 'Débouchage de canalisations, WC, éviers et douches. Techniques professionnelles et équipement spécialisé.' },
-    { icon: '🏠', title: 'Travaux de plomberie', desc: 'Rénovation de salle de bain, installation sanitaire, remplacement de canalisations. Devis détaillé gratuit.' },
+  const services = [
+    { icon: '🐀', title: 'Dératisation', desc: "Élimination complète des rats et souris. Méthodes professionnelles, sécurisées et efficaces. Prévention et traitement curatif pour protéger votre habitat." },
+    { icon: '🪳', title: 'Désinsectisation', desc: "Traitement contre cafards, blattes, punaises de lit, fourmis et tous insectes nuisibles. Solutions adaptées à chaque infestation." },
+    { icon: '🦟', title: 'Anti-moustiques', desc: "Protection contre les moustiques et insectes volants. Traitements intérieurs et extérieurs pour votre confort." },
+    { icon: '🧹', title: 'Désinfection', desc: "Désinfection professionnelle de vos locaux. Élimination des bactéries, virus et agents pathogènes. Environnement sain garanti." },
+    { icon: '🏠', title: 'Particuliers', desc: "Intervention discrète chez les particuliers. Appartements, maisons, caves, greniers. Devis gratuit et sans engagement." },
+    { icon: '🏢', title: 'Professionnels', desc: "Solutions pour entreprises, restaurants, hôtels, commerces. Contrats d'entretien et interventions ponctuelles." },
   ]
 
-  const whyUs: ServiceItem[] = [
-    { icon: '🏆', title: 'Compagnon de France', desc: "Une certification qui garantit l'excellence artisanale et le respect des traditions du métier." },
-    { icon: '✨', title: 'Travail propre et soigné', desc: 'Chantier laissé propre, finitions impeccables. Le respect de votre logement est notre priorité.' },
-    { icon: '💬', title: 'Explications claires', desc: "Nous prenons le temps de vous expliquer les travaux et de vous conseiller pour l'entretien." },
-    { icon: '📋', title: 'Devis transparent', desc: "Prix annoncés et respectés. Pas de mauvaise surprise à la fin de l'intervention." },
-    { icon: '⏱️', title: 'Ponctualité garantie', desc: 'Respect des horaires annoncés. Votre temps est précieux, nous le respectons.' },
-    { icon: '🛡️', title: 'Conseils préventifs', desc: 'Au-delà de la réparation, nous vous donnons les clés pour éviter les problèmes futurs.' },
+  const whyUs = [
+    { icon: '✅', title: 'Certifiés & Agréés', desc: "Professionnels certifiés Certibiocide. Produits homologués et méthodes conformes à la réglementation." },
+    { icon: '⚡', title: 'Intervention rapide', desc: "Réactivité maximale pour les urgences. Nous intervenons rapidement pour stopper l'infestation." },
+    { icon: '🔒', title: 'Discrétion assurée', desc: "Véhicules et interventions discrets. Votre tranquillité et votre réputation sont préservées." },
+    { icon: '💯', title: 'Efficacité garantie', desc: "Résultats garantis. Nous revenons gratuitement si le problème persiste après traitement." },
+    { icon: '📋', title: 'Devis gratuit', desc: "Diagnostic et devis gratuits. Prix transparents, sans surprise ni frais cachés." },
+    { icon: '🌿', title: 'Solutions écologiques', desc: "Méthodes respectueuses de l'environnement quand c'est possible. Sécurité pour vous et vos animaux." },
   ]
 
-  const testimonials: TestimonialItem[] = [
-    { initials: 'SC', name: 'Sabri C.', date: 'Janvier 2026', text: "Un grand merci pour ce travail de qualité ! Artisan à l'écoute, de très bon conseil et vraiment passionné par son métier. Le résultat est au-delà de mes attentes." },
-    { initials: 'F', name: 'Fab', date: 'Mars 2025', text: "J'ai fait appel à M. Leroy pour des travaux chez moi. Travail propre, sérieux et dans les délais. Il prend le temps de bien expliquer ce qu'il fait, et ça met en confiance." },
-    { initials: 'BS', name: 'Bob S.', date: 'Avril 2025', text: "Ponctuel, efficace et très sympathique. Il a réparé une fuite que d'autres n'avaient pas su localiser. Franchement, je suis bluffé par la qualité du service." },
-    { initials: 'AS', name: 'Anne Sophie B.', date: 'Mars 2025', text: "M. Leroy est sérieux, appliqué et à l'écoute. Les finitions sont soignées et le chantier a été laissé propre. Une vraie écoute et des conseils avisés." },
+  const testimonials = [
+    { initials: 'GL', name: 'Guillaume L.', date: 'Novembre 2022', text: "Pour des cafards dans ma cuisine. Bonne société, intervention efficace et professionnelle. Je recommande de les appeler !" },
+    { initials: 'JP', name: 'Jennifer P.', date: 'Juillet 2022', text: "Efficace, rapide, je recommande. Très satisfaite de la réactivité, de la ponctualité et de la qualité du travail." },
+    { initials: 'JR', name: 'Jorge R.', date: 'Client fidèle', text: "Super ! Intervention professionnelle et résultat impeccable. Une équipe sérieuse et compétente." },
   ]
 
-  const trustItems: TrustItem[] = [
-    { icon: '🏅', title: 'Compagnon de France', desc: "Certification d'excellence artisanale" },
-    { icon: '⏰', title: 'Disponible 24h/24', desc: 'Urgences 7j/7, jours fériés inclus' },
+  const trustItems = [
+    { icon: '🏆', title: 'Certifié Certibiocide', desc: "Agrément professionnel obligatoire" },
+    { icon: '⚡', title: 'Intervention express', desc: "Réactivité sous 24-48h" },
     { icon: '⭐', title: `${config.reviewCount} avis clients`, desc: `Note moyenne de ${config.rating}/5` },
-    { icon: '⚡', title: 'Intervention rapide', desc: 'Délai moyen < 1 heure' },
+    { icon: '🔒', title: 'Garantie résultat', desc: "Repassage gratuit si nécessaire" },
   ]
 
-  const heroServices: ServiceItem[] = [
-    { icon: '💧', title: "Fuite d'eau", desc: "Intervention en moins d'1h" },
-    { icon: '🔥', title: 'Fuite de gaz', desc: 'Urgence sécurisée' },
-    { icon: '🚿', title: 'Débouchage', desc: 'Canalisations & WC' },
-    { icon: '🌡️', title: 'Chaudière', desc: 'Réparation & entretien' },
+  const pests = [
+    { icon: '🐀', name: 'Rats' },
+    { icon: '🐁', name: 'Souris' },
+    { icon: '🪳', name: 'Cafards' },
+    { icon: '🛏️', name: 'Punaises de lit' },
+    { icon: '🐜', name: 'Fourmis' },
+    { icon: '🦟', name: 'Moustiques' },
   ]
 
   // ============================================================
@@ -144,12 +126,12 @@ export default function MrLeroyUrgences() {
   // STYLES
   // ============================================================
   const colors = {
-    primary: '#0c2340',
-    primaryLight: '#1a3a5c',
-    accent: '#e85d04',
-    accentHover: '#dc4c00',
-    gold: '#c9a227',
-    goldLight: '#e8c547',
+    primary: '#1a1a2e',
+    primaryLight: '#16213e',
+    accent: '#e94560',
+    accentHover: '#d63d56',
+    gold: '#f39c12',
+    goldLight: '#f4a62a',
     white: '#ffffff',
     offWhite: '#f8f9fa',
     gray100: '#f1f3f5',
@@ -157,11 +139,10 @@ export default function MrLeroyUrgences() {
     gray300: '#dee2e6',
     gray600: '#6c757d',
     gray800: '#343a40',
-    success: '#2d6a4f',
+    success: '#27ae60',
   }
 
   const s: Record<string, CSSProperties> = {
-    // Global
     wrapper: {
       fontFamily: "'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       background: colors.offWhite,
@@ -169,15 +150,13 @@ export default function MrLeroyUrgences() {
       lineHeight: 1.6,
       minHeight: '100vh',
     },
-
-    // Header
     header: {
       position: 'fixed',
       top: 0,
       left: 0,
       right: 0,
       zIndex: 1000,
-      background: scrolled ? 'rgba(12, 35, 64, 0.98)' : colors.primary,
+      background: scrolled ? 'rgba(26, 26, 46, 0.98)' : colors.primary,
       backdropFilter: scrolled ? 'blur(10px)' : 'none',
       padding: '0.75rem 2rem',
       display: 'flex',
@@ -190,8 +169,8 @@ export default function MrLeroyUrgences() {
     logoIcon: {
       width: 45,
       height: 45,
-      background: `linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 100%)`,
-      borderRadius: '50%',
+      background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentHover} 100%)`,
+      borderRadius: '12px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -205,9 +184,9 @@ export default function MrLeroyUrgences() {
       margin: 0,
     },
     logoSubtitle: {
-      fontSize: '0.7rem',
+      fontSize: '0.65rem',
       textTransform: 'uppercase',
-      letterSpacing: '2px',
+      letterSpacing: '1.5px',
       opacity: 0.8,
       color: colors.white,
     },
@@ -232,13 +211,11 @@ export default function MrLeroyUrgences() {
       display: 'flex',
       alignItems: 'center',
       gap: '0.5rem',
-      boxShadow: '0 4px 15px rgba(232, 93, 4, 0.3)',
+      boxShadow: '0 4px 15px rgba(233, 69, 96, 0.3)',
     },
-
-    // Hero
     hero: {
       minHeight: '100vh',
-      background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.primaryLight} 50%, #234567 100%)`,
+      background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.primaryLight} 50%, #0f3460 100%)`,
       position: 'relative',
       display: 'flex',
       alignItems: 'center',
@@ -250,8 +227,8 @@ export default function MrLeroyUrgences() {
       left: 0,
       right: 0,
       bottom: 0,
-      background: `radial-gradient(circle at 20% 80%, rgba(201, 162, 39, 0.1) 0%, transparent 50%),
-                   radial-gradient(circle at 80% 20%, rgba(232, 93, 4, 0.08) 0%, transparent 50%)`,
+      background: `radial-gradient(circle at 20% 80%, rgba(233, 69, 96, 0.15) 0%, transparent 50%),
+                   radial-gradient(circle at 80% 20%, rgba(243, 156, 18, 0.1) 0%, transparent 50%)`,
       pointerEvents: 'none',
     },
     heroContainer: {
@@ -269,8 +246,8 @@ export default function MrLeroyUrgences() {
       display: 'inline-flex',
       alignItems: 'center',
       gap: '0.5rem',
-      background: `linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 100%)`,
-      color: colors.primary,
+      background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentHover} 100%)`,
+      color: colors.white,
       padding: '0.5rem 1rem',
       borderRadius: '50px',
       fontSize: '0.8rem',
@@ -286,7 +263,7 @@ export default function MrLeroyUrgences() {
       lineHeight: 1.1,
       marginBottom: '1rem',
     },
-    heroTitleAccent: { color: colors.gold },
+    heroTitleAccent: { color: colors.accent },
     heroSubtitle: { fontSize: '1.25rem', color: 'rgba(255,255,255,0.85)', marginBottom: '1.5rem' },
     ratingBox: {
       display: 'inline-flex',
@@ -314,7 +291,7 @@ export default function MrLeroyUrgences() {
       display: 'inline-flex',
       alignItems: 'center',
       gap: '0.75rem',
-      boxShadow: '0 8px 30px rgba(232, 93, 4, 0.4)',
+      boxShadow: '0 8px 30px rgba(233, 69, 96, 0.4)',
     },
     ctaSecondary: {
       background: 'transparent',
@@ -330,8 +307,6 @@ export default function MrLeroyUrgences() {
       gap: '0.75rem',
       border: '2px solid rgba(255,255,255,0.3)',
     },
-
-    // Hero Card
     heroVisual: { position: 'relative' },
     heroCard: {
       background: colors.white,
@@ -339,7 +314,7 @@ export default function MrLeroyUrgences() {
       padding: '2.5rem',
       boxShadow: '0 30px 60px rgba(0,0,0,0.3)',
       position: 'relative',
-      transform: 'rotate(2deg)',
+      transform: 'rotate(-2deg)',
     },
     heroCardBorder: {
       position: 'absolute',
@@ -347,7 +322,7 @@ export default function MrLeroyUrgences() {
       left: -3,
       right: -3,
       bottom: -3,
-      background: `linear-gradient(135deg, ${colors.gold}, ${colors.accent})`,
+      background: `linear-gradient(135deg, ${colors.accent}, ${colors.gold})`,
       borderRadius: '32px',
       zIndex: -1,
     },
@@ -360,31 +335,21 @@ export default function MrLeroyUrgences() {
       padding: '1rem 1.5rem',
       borderRadius: '15px',
       fontWeight: 700,
-      boxShadow: '0 10px 30px rgba(45, 106, 79, 0.4)',
+      boxShadow: '0 10px 30px rgba(39, 174, 96, 0.4)',
     },
-    servicePreview: { display: 'flex', flexDirection: 'column', gap: '1rem' },
-    servicePreviewItem: {
+    pestsGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' },
+    pestItem: {
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
-      gap: '1rem',
-      padding: '0.875rem',
+      gap: '0.5rem',
+      padding: '1rem',
       background: colors.gray100,
-      borderRadius: '12px',
+      borderRadius: '15px',
+      textAlign: 'center',
     },
-    servicePreviewIcon: {
-      width: 45,
-      height: 45,
-      background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.primaryLight} 100%)`,
-      borderRadius: '10px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '1.25rem',
-    },
-    servicePreviewTitle: { fontWeight: 600, color: colors.primary, margin: 0, fontSize: '0.95rem' },
-    servicePreviewDesc: { fontSize: '0.8rem', color: colors.gray600, margin: 0 },
-
-    // Trust Section
+    pestIcon: { fontSize: '2rem' },
+    pestName: { fontWeight: 600, color: colors.primary, margin: 0, fontSize: '0.85rem' },
     trustSection: { background: colors.white, padding: '3rem 2rem', borderBottom: `1px solid ${colors.gray200}` },
     trustContainer: {
       maxWidth: 1200,
@@ -414,13 +379,11 @@ export default function MrLeroyUrgences() {
     },
     trustTitle: { fontWeight: 700, color: colors.primary, fontSize: '1rem', margin: 0 },
     trustDesc: { fontSize: '0.8rem', color: colors.gray600, margin: 0 },
-
-    // Section Header
     sectionHeader: { textAlign: 'center', maxWidth: 700, margin: '0 auto 4rem' },
     sectionTag: {
       display: 'inline-block',
-      background: `linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 100%)`,
-      color: colors.primary,
+      background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentHover} 100%)`,
+      color: colors.white,
       padding: '0.5rem 1.25rem',
       borderRadius: '50px',
       fontSize: '0.75rem',
@@ -438,8 +401,6 @@ export default function MrLeroyUrgences() {
     sectionTitleLight: { color: colors.white },
     sectionDesc: { color: colors.gray600, fontSize: '1.1rem', margin: 0 },
     sectionDescLight: { color: 'rgba(255,255,255,0.7)' },
-
-    // Services
     services: { padding: '6rem 2rem', background: colors.offWhite },
     servicesGrid: {
       maxWidth: 1200,
@@ -470,8 +431,6 @@ export default function MrLeroyUrgences() {
     },
     serviceTitle: { fontSize: '1.25rem', color: colors.primary, marginBottom: '0.75rem', fontWeight: 700 },
     serviceDesc: { color: colors.gray600, fontSize: '0.95rem', lineHeight: 1.7, margin: 0 },
-
-    // Why Us
     whyUs: { padding: '6rem 2rem', background: colors.primary, position: 'relative', overflow: 'hidden' },
     whyUsOverlay: {
       position: 'absolute',
@@ -479,8 +438,8 @@ export default function MrLeroyUrgences() {
       left: 0,
       right: 0,
       bottom: 0,
-      background: `radial-gradient(circle at 10% 90%, rgba(201, 162, 39, 0.15) 0%, transparent 40%),
-                   radial-gradient(circle at 90% 10%, rgba(232, 93, 4, 0.1) 0%, transparent 40%)`,
+      background: `radial-gradient(circle at 10% 90%, rgba(233, 69, 96, 0.2) 0%, transparent 40%),
+                   radial-gradient(circle at 90% 10%, rgba(243, 156, 18, 0.15) 0%, transparent 40%)`,
       pointerEvents: 'none',
     },
     whyUsContainer: { maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 },
@@ -495,7 +454,7 @@ export default function MrLeroyUrgences() {
     whyIcon: {
       width: 60,
       height: 60,
-      background: `linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 100%)`,
+      background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentHover} 100%)`,
       borderRadius: '15px',
       display: 'flex',
       alignItems: 'center',
@@ -505,11 +464,9 @@ export default function MrLeroyUrgences() {
     },
     whyTitle: { color: colors.white, fontSize: '1.15rem', marginBottom: '0.5rem', fontWeight: 600 },
     whyDesc: { color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', margin: 0 },
-
-    // Testimonials
     testimonials: { padding: '6rem 2rem', background: colors.offWhite },
     testimonialsContainer: { maxWidth: 1200, margin: '0 auto' },
-    testimonialsGrid: { display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' },
+    testimonialsGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' },
     testimonialCard: {
       background: colors.white,
       borderRadius: '25px',
@@ -549,8 +506,6 @@ export default function MrLeroyUrgences() {
     },
     authorName: { fontWeight: 600, color: colors.primary, margin: 0 },
     authorDate: { fontSize: '0.85rem', color: colors.gray600 },
-
-    // Contact
     contact: { padding: '6rem 2rem', background: colors.white },
     contactContainer: {
       maxWidth: 1200,
@@ -624,8 +579,6 @@ export default function MrLeroyUrgences() {
       cursor: 'pointer',
       width: '100%',
     },
-
-    // Footer
     footer: { background: colors.primary, color: colors.white, padding: '4rem 2rem 2rem' },
     footerContainer: { maxWidth: 1200, margin: '0 auto' },
     footerMain: {
@@ -642,7 +595,7 @@ export default function MrLeroyUrgences() {
       maxWidth: 350,
       marginTop: '1.5rem',
     },
-    footerLinksTitle: { fontSize: '1rem', marginBottom: '1.25rem', color: colors.gold },
+    footerLinksTitle: { fontSize: '1rem', marginBottom: '1.25rem', color: colors.accent },
     footerLinksList: { listStyle: 'none', padding: 0, margin: 0 },
     footerLink: {
       color: 'rgba(255,255,255,0.7)',
@@ -662,12 +615,10 @@ export default function MrLeroyUrgences() {
       display: 'inline-flex',
       alignItems: 'center',
       gap: '0.5rem',
-      color: colors.gold,
+      color: colors.accent,
       textDecoration: 'none',
       fontWeight: 500,
     },
-
-    // Floating CTA
     floatingCta: { position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 999 },
     floatingCtaLink: {
       display: 'flex',
@@ -679,7 +630,7 @@ export default function MrLeroyUrgences() {
       borderRadius: '50px',
       textDecoration: 'none',
       fontWeight: 700,
-      boxShadow: '0 8px 30px rgba(232, 93, 4, 0.5)',
+      boxShadow: '0 8px 30px rgba(233, 69, 96, 0.5)',
     },
   }
 
@@ -699,30 +650,30 @@ export default function MrLeroyUrgences() {
       50% { transform: scale(1.05); }
     }
     
-    .mr-leroy-floating-cta { animation: pulse 2s infinite; }
-    .mr-leroy-floating-badge { animation: float 3s ease-in-out infinite; }
+    .radical3d-floating-cta { animation: pulse 2s infinite; }
+    .radical3d-floating-badge { animation: float 3s ease-in-out infinite; }
     
     @media (max-width: 1024px) {
-      .mr-leroy-hero-container { grid-template-columns: 1fr !important; text-align: center; }
-      .mr-leroy-hero-visual { display: none !important; }
-      .mr-leroy-trust-container { grid-template-columns: repeat(2, 1fr) !important; }
-      .mr-leroy-services-grid { grid-template-columns: repeat(2, 1fr) !important; }
-      .mr-leroy-why-grid { grid-template-columns: repeat(2, 1fr) !important; }
-      .mr-leroy-contact-container { grid-template-columns: 1fr !important; }
-      .mr-leroy-footer-main { grid-template-columns: 1fr !important; gap: 2rem !important; }
+      .radical3d-hero-container { grid-template-columns: 1fr !important; text-align: center; }
+      .radical3d-hero-visual { display: none !important; }
+      .radical3d-trust-container { grid-template-columns: repeat(2, 1fr) !important; }
+      .radical3d-services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .radical3d-why-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .radical3d-testimonials-grid { grid-template-columns: 1fr !important; }
+      .radical3d-contact-container { grid-template-columns: 1fr !important; }
+      .radical3d-footer-main { grid-template-columns: 1fr !important; gap: 2rem !important; }
     }
     
     @media (max-width: 768px) {
-      .mr-leroy-nav { display: none !important; }
-      .mr-leroy-hero { padding: 7rem 1.5rem 3rem !important; }
-      .mr-leroy-hero-ctas { flex-direction: column !important; }
-      .mr-leroy-trust-container { grid-template-columns: 1fr !important; }
-      .mr-leroy-services-grid { grid-template-columns: 1fr !important; }
-      .mr-leroy-why-grid { grid-template-columns: 1fr !important; }
-      .mr-leroy-testimonials-grid { grid-template-columns: 1fr !important; }
-      .mr-leroy-footer-bottom { flex-direction: column !important; gap: 1rem !important; text-align: center !important; }
-      .mr-leroy-floating-cta { left: 1rem !important; right: 1rem !important; bottom: 1rem !important; }
-      .mr-leroy-floating-cta a { justify-content: center !important; }
+      .radical3d-nav { display: none !important; }
+      .radical3d-hero { padding: 7rem 1.5rem 3rem !important; }
+      .radical3d-hero-ctas { flex-direction: column !important; }
+      .radical3d-trust-container { grid-template-columns: 1fr !important; }
+      .radical3d-services-grid { grid-template-columns: 1fr !important; }
+      .radical3d-why-grid { grid-template-columns: 1fr !important; }
+      .radical3d-footer-bottom { flex-direction: column !important; gap: 1rem !important; text-align: center !important; }
+      .radical3d-floating-cta { left: 1rem !important; right: 1rem !important; bottom: 1rem !important; }
+      .radical3d-floating-cta a { justify-content: center !important; }
     }
   `
 
@@ -736,13 +687,13 @@ export default function MrLeroyUrgences() {
       {/* Header */}
       <header style={s.header}>
         <div style={s.logo}>
-          <div style={s.logoIcon}>🔧</div>
+          <div style={s.logoIcon}>🛡️</div>
           <div>
             <h1 style={s.logoTitle}>{config.name}</h1>
             <span style={s.logoSubtitle}>{config.tagline}</span>
           </div>
         </div>
-        <nav style={s.nav} className="mr-leroy-nav">
+        <nav style={s.nav} className="radical3d-nav">
           <button onClick={() => scrollToSection('services')} style={s.navLink}>Services</button>
           <button onClick={() => scrollToSection('pourquoi')} style={s.navLink}>Pourquoi nous</button>
           <button onClick={() => scrollToSection('avis')} style={s.navLink}>Avis clients</button>
@@ -752,42 +703,40 @@ export default function MrLeroyUrgences() {
       </header>
 
       {/* Hero */}
-      <section style={s.hero} className="mr-leroy-hero">
+      <section style={s.hero} className="radical3d-hero">
         <div style={s.heroOverlay} />
-        <div style={s.heroContainer} className="mr-leroy-hero-container">
+        <div style={s.heroContainer} className="radical3d-hero-container">
           <div>
-            <div style={s.badge}>🏆 Artisan {config.tagline}</div>
+            <div style={s.badge}>🛡️ Expert anti-nuisibles certifié</div>
             <h2 style={s.heroTitle}>
-              Votre plombier <span style={s.heroTitleAccent}>d&apos;urgence</span> disponible 24h/24
+              Stop aux <span style={s.heroTitleAccent}>nuisibles</span> dans votre habitat
             </h2>
             <p style={s.heroSubtitle}>
-              Intervention rapide, travail soigné et conseils d&apos;expert pour tous vos problèmes de plomberie en {config.zone}.
+              Dératisation, désinsectisation et désinfection professionnelles. Intervention rapide et résultats garantis en {config.zone}.
             </p>
             <div style={s.ratingBox}>
-              <div style={s.stars}>★★★★★</div>
+              <div style={s.stars}>★★★★☆</div>
               <div>
                 <strong style={s.ratingNumber}>{config.rating}/5</strong>
                 <span style={s.ratingLabel}>{config.reviewCount} avis Google</span>
               </div>
             </div>
-            <div style={s.heroCtas} className="mr-leroy-hero-ctas">
+            <div style={s.heroCtas} className="radical3d-hero-ctas">
               <a href={`tel:${config.phoneTel}`} style={s.ctaPrimary}>📞 Appeler maintenant</a>
-              <button onClick={() => scrollToSection('contact')} style={s.ctaSecondary}>✉️ Demander un devis</button>
+              <button onClick={() => scrollToSection('contact')} style={s.ctaSecondary}>📋 Devis gratuit</button>
             </div>
           </div>
 
-          <div style={s.heroVisual} className="mr-leroy-hero-visual">
+          <div style={s.heroVisual} className="radical3d-hero-visual">
             <div style={s.heroCard}>
               <div style={s.heroCardBorder} />
-              <div style={s.floatingBadge} className="mr-leroy-floating-badge">24h/24 🚨</div>
-              <div style={s.servicePreview}>
-                {heroServices.map((item, i) => (
-                  <div key={i} style={s.servicePreviewItem}>
-                    <div style={s.servicePreviewIcon}>{item.icon}</div>
-                    <div>
-                      <h4 style={s.servicePreviewTitle}>{item.title}</h4>
-                      <p style={s.servicePreviewDesc}>{item.desc}</p>
-                    </div>
+              <div style={s.floatingBadge} className="radical3d-floating-badge">Certifié ✓</div>
+              <h3 style={{ margin: '0 0 1.5rem', color: colors.primary, fontSize: '1.25rem' }}>Nous traitons</h3>
+              <div style={s.pestsGrid}>
+                {pests.map((pest, i) => (
+                  <div key={i} style={s.pestItem}>
+                    <span style={s.pestIcon}>{pest.icon}</span>
+                    <p style={s.pestName}>{pest.name}</p>
                   </div>
                 ))}
               </div>
@@ -798,7 +747,7 @@ export default function MrLeroyUrgences() {
 
       {/* Trust */}
       <section style={s.trustSection}>
-        <div style={s.trustContainer} className="mr-leroy-trust-container">
+        <div style={s.trustContainer} className="radical3d-trust-container">
           {trustItems.map((item, i) => (
             <AnimatedCard key={i} delay={i * 0.1}>
               <div style={s.trustItem}>
@@ -816,11 +765,11 @@ export default function MrLeroyUrgences() {
       {/* Services */}
       <section style={s.services} id="services">
         <div style={s.sectionHeader}>
-          <span style={s.sectionTag}>Nos prestations</span>
-          <h2 style={s.sectionTitle}>Des services adaptés à tous vos besoins</h2>
-          <p style={s.sectionDesc}>De l&apos;urgence aux travaux planifiés, nous intervenons avec le même soin et le même professionnalisme.</p>
+          <span style={s.sectionTag}>Nos services</span>
+          <h2 style={s.sectionTitle}>Solutions contre tous les nuisibles</h2>
+          <p style={s.sectionDesc}>Des traitements professionnels adaptés à chaque situation, pour particuliers et professionnels.</p>
         </div>
-        <div style={s.servicesGrid} className="mr-leroy-services-grid">
+        <div style={s.servicesGrid} className="radical3d-services-grid">
           {services.map((service, i) => (
             <AnimatedCard key={i} delay={i * 0.1}>
               <div style={s.serviceCard}>
@@ -838,11 +787,11 @@ export default function MrLeroyUrgences() {
         <div style={s.whyUsOverlay} />
         <div style={s.whyUsContainer}>
           <div style={s.sectionHeader}>
-            <span style={s.sectionTag}>Nos engagements</span>
-            <h2 style={{ ...s.sectionTitle, ...s.sectionTitleLight }}>Pourquoi choisir {config.name.split(' ')[0]} {config.name.split(' ')[1]} ?</h2>
-            <p style={{ ...s.sectionDesc, ...s.sectionDescLight }}>Un artisan passionné qui place la qualité et la satisfaction client au cœur de son métier.</p>
+            <span style={s.sectionTag}>Nos garanties</span>
+            <h2 style={{ ...s.sectionTitle, ...s.sectionTitleLight }}>Pourquoi choisir {config.name} ?</h2>
+            <p style={{ ...s.sectionDesc, ...s.sectionDescLight }}>Des professionnels certifiés pour une intervention efficace et durable.</p>
           </div>
-          <div style={s.whyGrid} className="mr-leroy-why-grid">
+          <div style={s.whyGrid} className="radical3d-why-grid">
             {whyUs.map((item, i) => (
               <AnimatedCard key={i} delay={i * 0.1}>
                 <div style={s.whyCard}>
@@ -861,10 +810,10 @@ export default function MrLeroyUrgences() {
         <div style={s.testimonialsContainer}>
           <div style={s.sectionHeader}>
             <span style={s.sectionTag}>Témoignages</span>
-            <h2 style={s.sectionTitle}>Ce que disent nos clients</h2>
-            <p style={s.sectionDesc}>La satisfaction de nos clients est notre meilleure récompense.</p>
+            <h2 style={s.sectionTitle}>Ils nous ont fait confiance</h2>
+            <p style={s.sectionDesc}>L&apos;efficacité de nos interventions reconnue par nos clients.</p>
           </div>
-          <div style={s.testimonialsGrid} className="mr-leroy-testimonials-grid">
+          <div style={s.testimonialsGrid} className="radical3d-testimonials-grid">
             {testimonials.map((t, i) => (
               <AnimatedCard key={i} delay={i * 0.1}>
                 <div style={s.testimonialCard}>
@@ -887,17 +836,17 @@ export default function MrLeroyUrgences() {
 
       {/* Contact */}
       <section style={s.contact} id="contact">
-        <div style={s.contactContainer} className="mr-leroy-contact-container">
+        <div style={s.contactContainer} className="radical3d-contact-container">
           <div>
-            <h2 style={s.contactTitle}>Besoin d&apos;un plombier ?</h2>
-            <p style={s.contactDesc}>Contactez-nous pour une intervention rapide ou pour obtenir un devis gratuit. Nous sommes disponibles 24h/24 pour les urgences.</p>
+            <h2 style={s.contactTitle}>Un problème de nuisibles ?</h2>
+            <p style={s.contactDesc}>Contactez-nous pour un diagnostic gratuit. Nous intervenons rapidement pour éliminer les nuisibles de votre habitat ou local professionnel.</p>
             <div style={s.contactMethods}>
               <div style={s.contactMethod}>
                 <div style={s.contactMethodIcon}>📞</div>
                 <div>
                   <h4 style={s.contactMethodTitle}>Téléphone</h4>
                   <p style={s.contactMethodValue}>{config.phone}</p>
-                  <span style={s.contactMethodNote}>Disponible 24h/24 pour les urgences</span>
+                  <span style={s.contactMethodNote}>Devis gratuit par téléphone</span>
                 </div>
               </div>
               <div style={s.contactMethod}>
@@ -939,7 +888,7 @@ export default function MrLeroyUrgences() {
               <div style={s.formGroup}>
                 <label style={s.formLabel}>Décrivez votre problème</label>
                 <textarea
-                  placeholder="Fuite sous l'évier, ballon d'eau chaude en panne..."
+                  placeholder="Type de nuisibles, lieu d'infestation, urgence..."
                   required
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -955,16 +904,16 @@ export default function MrLeroyUrgences() {
       {/* Footer */}
       <footer style={s.footer}>
         <div style={s.footerContainer}>
-          <div style={s.footerMain} className="mr-leroy-footer-main">
+          <div style={s.footerMain} className="radical3d-footer-main">
             <div>
               <div style={s.logo}>
-                <div style={s.logoIcon}>🔧</div>
+                <div style={s.logoIcon}>🛡️</div>
                 <div>
                   <h1 style={s.logoTitle}>{config.name}</h1>
                   <span style={s.logoSubtitle}>{config.tagline}</span>
                 </div>
               </div>
-              <p style={s.footerBrandDesc}>Artisan plombier passionné, certifié {config.tagline}. Intervention rapide et travail soigné pour tous vos problèmes de plomberie en {config.zone}.</p>
+              <p style={s.footerBrandDesc}>Expert en dératisation, désinsectisation et désinfection. Interventions professionnelles et certifiées pour éliminer tous types de nuisibles en {config.zone}.</p>
             </div>
             <div>
               <h4 style={s.footerLinksTitle}>Services</h4>
@@ -983,7 +932,7 @@ export default function MrLeroyUrgences() {
               </ul>
             </div>
           </div>
-          <div style={s.footerBottom} className="mr-leroy-footer-bottom">
+          <div style={s.footerBottom} className="radical3d-footer-bottom">
             <p style={s.footerCopyright}>© 2026 {config.name} - Tous droits réservés</p>
             <a href={config.googleReviewsUrl} target="_blank" rel="noopener noreferrer" style={s.googleReviewsLink}>
               ⭐ Voir nos {config.reviewCount} avis Google
@@ -993,8 +942,8 @@ export default function MrLeroyUrgences() {
       </footer>
 
       {/* Floating CTA */}
-      <div style={s.floatingCta} className="mr-leroy-floating-cta">
-        <a href={`tel:${config.phoneTel}`} style={s.floatingCtaLink}>📞 Urgence ? Appelez-nous</a>
+      <div style={s.floatingCta} className="radical3d-floating-cta">
+        <a href={`tel:${config.phoneTel}`} style={s.floatingCtaLink}>📞 Appeler maintenant</a>
       </div>
     </div>
   )
