@@ -6,6 +6,7 @@ import Radical3D from '@/components/prospects/radical3d';
 import SelviSerrurier from '@/components/prospects/selviserrurier';
 import ArtisanDuvalCouvreur from '@/components/prospects/artisanduval';
 import AGEElectricien from '@/components/prospects/age-electricien';
+import MTRMacon from '@/components/prospects/mtr-construction';
 
 const clients = {
   'mrleroyurgences': MrLeroyUrgences,
@@ -13,6 +14,7 @@ const clients = {
   'selviserrurier': SelviSerrurier,
   'artisanduval': ArtisanDuvalCouvreur,
   'age-electricien': AGEElectricien,
+  'mtr-construction': MTRMacon,
 }
 
 interface PageProps {
