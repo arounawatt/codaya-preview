@@ -5,12 +5,14 @@ import { notFound } from 'next/navigation'
 import Radical3D from '@/components/prospects/radical3d';
 import SelviSerrurier from '@/components/prospects/selviserrurier';
 import ArtisanDuvalCouvreur from '@/components/prospects/artisanduval';
+import AGEElectricien from '@/components/prospects/age-electricien';
 
 const clients = {
   'mrleroyurgences': MrLeroyUrgences,
   'radical3d': Radical3D,
   'selviserrurier': SelviSerrurier,
   'artisanduval': ArtisanDuvalCouvreur,
+  'age-electricien': AGEElectricien,
 }
 
 interface PageProps {
