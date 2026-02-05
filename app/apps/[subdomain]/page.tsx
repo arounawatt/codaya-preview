@@ -4,11 +4,13 @@ import { NextResponse } from 'next/server';
 import { notFound } from 'next/navigation'
 import Radical3D from '@/components/prospects/radical3d';
 import SelviSerrurier from '@/components/prospects/selviserrurier';
+import ArtisanDuvalCouvreur from '@/components/prospects/artisanduval';
 
 const clients = {
   'mrleroyurgences': MrLeroyUrgences,
   'radical3d': Radical3D,
   'selviserrurier': SelviSerrurier,
+  'artisanduval': ArtisanDuvalCouvreur,
 }
 
 interface PageProps {
