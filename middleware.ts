@@ -6,7 +6,7 @@ export const config = {
 
 export default function middleware(req: NextRequest) {
   const url = req.nextUrl;
-  let hostname = req.headers.get("host") || "";
+  const hostname = req.headers.get("host") || "";
 
   // Define the main domain (without www or https://)
   let rootDomain = "codaya.fr"; // Replace with your domain
@@ -18,15 +18,28 @@ export default function middleware(req: NextRequest) {
 
   const subdomain = hostname.replace(`.${rootDomain}`, "").split(".")[0]; // Extract subdomain
   
-  // Handle main domain routing
+  // Handle main domain routing (no subdomain)
   if (
     !subdomain ||
-    subdomain === "www" ||
+    subdomain === "www" || 
+    subdomain === 'trustly' ||
     hostname === rootDomain
   ) {
+    // Si un path existe (ex: /wall-of-love), laisser Next.js le résoudre normalement
+    if (url.pathname !== "/") {
+      return NextResponse.next();
+    }
     return NextResponse.rewrite(new URL("/home", req.url));
   }
 
-  // Rewrite subdomains to /apps/[subdomain]
-  return NextResponse.rewrite(new URL(`/apps/${subdomain}`, req.url));
-}
+  // If the path is just "/", rewrite to /apps/[subdomain]
+  // Otherwise (e.g. /wall-of-love), keep the path and pass subdomain as search param
+  if (url.pathname === "/" && subdomain) {
+    return NextResponse.rewrite(new URL(`/apps/${subdomain}`, req.url));
+  }
+
+  // Rewrite to the path itself with subdomain as query param
+  const rewriteUrl = new URL(url.pathname, req.url);
+  rewriteUrl.searchParams.set("subdomain", subdomain);
+  return NextResponse.rewrite(rewriteUrl);
+}  

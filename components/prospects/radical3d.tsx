@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, FormEvent, ReactNode, CSSProperties } from 'react'
+import { TestimonialItem } from '@/types/testimonial'
 
 // ============================================================
 // RADICAL 3D - Dératisation, Désinsectisation, Désinfection
@@ -12,7 +13,14 @@ interface AnimatedCardProps {
   delay?: number
 }
 
-export default function Radical3D() {
+interface Radical3DProps {
+  testimonials?: TestimonialItem[]
+  companyName?: string
+  totalReviews?: number
+  score?: number
+}
+
+export default function Radical3D({ testimonials = [], companyName, totalReviews, score }: Radical3DProps) {
   const [scrolled, setScrolled] = useState<boolean>(false)
   const [formData, setFormData] = useState<{ name: string; phone: string; message: string }>({
     name: '',
@@ -40,12 +48,12 @@ export default function Radical3D() {
   // CONFIGURATION DU CLIENT
   // ============================================================
   const config = {
-    name: 'Radical 3D',
+    name: companyName ?? 'Radical 3D',
     tagline: 'Dératisation • Désinsectisation • Désinfection',
     phone: '01 64 58 48 80',
     phoneTel: '+33164584880',
-    rating: '4,1',
-    reviewCount: 7,
+    rating: score !== undefined ? score.toFixed(1).replace('.', ',') : '4,1',
+    reviewCount: totalReviews ?? 7,
     zone: 'Île-de-France',
     googleReviewsUrl: 'https://www.google.com/search?q=Radical+3D',
   }
@@ -66,12 +74,6 @@ export default function Radical3D() {
     { icon: '💯', title: 'Efficacité garantie', desc: "Résultats garantis. Nous revenons gratuitement si le problème persiste après traitement." },
     { icon: '📋', title: 'Devis gratuit', desc: "Diagnostic et devis gratuits. Prix transparents, sans surprise ni frais cachés." },
     { icon: '🌿', title: 'Solutions écologiques', desc: "Méthodes respectueuses de l'environnement quand c'est possible. Sécurité pour vous et vos animaux." },
-  ]
-
-  const testimonials = [
-    { initials: 'GL', name: 'Guillaume L.', date: 'Novembre 2022', text: "Pour des cafards dans ma cuisine. Bonne société, intervention efficace et professionnelle. Je recommande de les appeler !" },
-    { initials: 'JP', name: 'Jennifer P.', date: 'Juillet 2022', text: "Efficace, rapide, je recommande. Très satisfaite de la réactivité, de la ponctualité et de la qualité du travail." },
-    { initials: 'JR', name: 'Jorge R.', date: 'Client fidèle', text: "Super ! Intervention professionnelle et résultat impeccable. Une équipe sérieuse et compétente." },
   ]
 
   const trustItems = [
@@ -144,7 +146,6 @@ export default function Radical3D() {
 
   const s: Record<string, CSSProperties> = {
     wrapper: {
-      fontFamily: "'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       background: colors.offWhite,
       color: colors.gray800,
       lineHeight: 1.6,
@@ -177,7 +178,6 @@ export default function Radical3D() {
       fontSize: '1.25rem',
     },
     logoTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: '1.4rem',
       fontWeight: 700,
       color: colors.white,
@@ -257,7 +257,6 @@ export default function Radical3D() {
       marginBottom: '1.5rem',
     },
     heroTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: 'clamp(2.5rem, 5vw, 4rem)',
       color: colors.white,
       lineHeight: 1.1,
@@ -393,7 +392,6 @@ export default function Radical3D() {
       marginBottom: '1rem',
     },
     sectionTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: 'clamp(2rem, 4vw, 3rem)',
       color: colors.primary,
       marginBottom: '1rem',
@@ -480,7 +478,6 @@ export default function Radical3D() {
       right: '2rem',
       fontSize: '4rem',
       color: colors.gray200,
-      fontFamily: 'Georgia, serif',
       lineHeight: 1,
     },
     testimonialStars: { color: colors.gold, fontSize: '1.1rem', letterSpacing: '2px', marginBottom: '1rem' },
@@ -516,7 +513,6 @@ export default function Radical3D() {
       alignItems: 'start',
     },
     contactTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: '2.5rem',
       color: colors.primary,
       marginBottom: '1rem',
@@ -638,8 +634,6 @@ export default function Radical3D() {
   // STYLES RESPONSIVE
   // ============================================================
   const responsiveStyles = `
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
-    
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
@@ -821,9 +815,9 @@ export default function Radical3D() {
                   <div style={s.testimonialStars}>★★★★★</div>
                   <p style={s.testimonialText}>{t.text}</p>
                   <div style={s.testimonialAuthor}>
-                    <div style={s.authorAvatar}>{t.initials}</div>
+                    <div style={s.authorAvatar}>{t.avatar}</div>
                     <div>
-                      <h4 style={s.authorName}>{t.name}</h4>
+                      <h4 style={s.authorName}>{t.author}</h4>
                       <span style={s.authorDate}>{t.date}</span>
                     </div>
                   </div>

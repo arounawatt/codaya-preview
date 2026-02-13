@@ -1,8 +1,15 @@
 import React from 'react';
+import { TestimonialItem } from '@/types/testimonial';
 
-export default function ArtisanDuvalCouvreur() {
+interface ArtisanDuvalCouvreurProps {
+  testimonials?: TestimonialItem[]
+  companyName?: string
+  totalReviews?: number
+  score?: number
+}
+
+export default function ArtisanDuvalCouvreur({ testimonials = [], companyName, totalReviews, score }: ArtisanDuvalCouvreurProps) {
   const pageStyles: React.CSSProperties = {
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     margin: 0,
     padding: 0,
     color: '#1a1a1a',
@@ -119,7 +126,6 @@ export default function ArtisanDuvalCouvreur() {
 
   const statNumberStyles: React.CSSProperties = {
     fontSize: '3rem',
-    fontWeight: 800,
     color: '#f97316',
     marginBottom: '5px',
     display: 'block',
@@ -143,7 +149,6 @@ export default function ArtisanDuvalCouvreur() {
 
   const sectionTitleStyles: React.CSSProperties = {
     fontSize: '3rem',
-    fontWeight: 800,
     textAlign: 'center',
     marginBottom: '20px',
     color: '#0f172a',
@@ -271,7 +276,6 @@ export default function ArtisanDuvalCouvreur() {
     opacity: 0.2,
     lineHeight: 1,
     marginBottom: '15px',
-    fontFamily: 'Georgia, serif',
   };
 
   const testimonialTextStyles: React.CSSProperties = {
@@ -384,43 +388,10 @@ export default function ArtisanDuvalCouvreur() {
     { icon: '⚡', title: 'Rapidité', desc: 'Interventions rapides et respect des délais garantis' },
     { icon: '🎯', title: 'Expertise', desc: 'Plus de 15 ans d\'expérience en couverture' },
     { icon: '💰', title: 'Prix Justes', desc: 'Tarifs compétitifs sans compromis sur la qualité' },
-    { icon: '⭐', title: 'Satisfaction', desc: '4,8/5 étoiles basé sur 63 avis clients' },
+    { icon: '⭐', title: 'Satisfaction', desc: `${score !== undefined ? score.toFixed(1).replace('.', ',') : '4,8'}/5 étoiles basé sur ${totalReviews ?? 63} avis clients` },
   ];
 
-  const testimonials = [
-    {
-      text: "Je tiens à remercier toute l'équipe qui s'est chargée de l'intervention sur notre toit. Nous avons bien fait de vous appeler, et nous n'hésiterons pas à vous recommander à tous nos proches",
-      author: 'Axel Brebion',
-      date: 'Juin 2025',
-    },
-    {
-      text: "J'ai grandement apprécié la transparence sur tous les tarifs. Je vous recontacterais pour d'autres projets à venir sur ma toiture!",
-      author: 'Nouel Beaulac',
-      date: 'Juin 2025',
-    },
-    {
-      text: "Je tiens à exprimer ma satisfaction quant aux services fournis par cette entreprise de couverture. Leur expertise a été déterminante pour la réussite des travaux.",
-      author: 'Omar Tyson',
-      date: 'Juin 2025',
-    },
-    {
-      text: "Ils ont été à l'écoute de mes besoins et m'ont conseillé au mieux après que je leur ai demandé un devis ! Je les recommande déjà à mes voisins !",
-      author: 'Shazwani Rusli',
-      date: 'Avril 2025',
-    },
-    {
-      text: "Je suis extrêmement satisfait de la qualité du travail réalisé par cette société de couverture. Leur engagement envers la satisfaction client est évident.",
-      author: 'Archard Devost',
-      date: 'Mai 2025',
-    },
-    {
-      text: "Je vous ai recommandé à mes amis et ma famille. Votre entreprise est sérieuse et vous faites un excellent travail",
-      author: 'Ulysse Durand',
-      date: 'Juin 2025',
-    },
-  ];
-
-  return (
+  return (<>
     <div style={pageStyles}>
       {/* CSS Animations */}
       <style>{`
@@ -533,11 +504,11 @@ export default function ArtisanDuvalCouvreur() {
           </div>
           <div className="hero-stats" style={heroStatsStyles}>
             <div style={statItemStyles}>
-              <span style={statNumberStyles}>4.8★</span>
+              <span style={statNumberStyles}>{score !== undefined ? score.toFixed(1) : '4.8'}★</span>
               <span style={statLabelStyles}>Note Moyenne</span>
             </div>
             <div style={statItemStyles}>
-              <span style={statNumberStyles}>63</span>
+              <span style={statNumberStyles}>{totalReviews ?? 63}</span>
               <span style={statLabelStyles}>Avis Clients</span>
             </div>
             <div style={statItemStyles}>
@@ -605,7 +576,7 @@ export default function ArtisanDuvalCouvreur() {
                 <p style={testimonialTextStyles}>{testimonial.text}</p>
                 <div style={testimonialAuthorStyles}>
                   <div style={avatarStyles}>
-                    {testimonial.author.charAt(0)}
+                    {testimonial.avatar}
                   </div>
                   <div>
                     <div style={authorNameStyles}>{testimonial.author}</div>
@@ -640,5 +611,7 @@ export default function ArtisanDuvalCouvreur() {
         </p>
       </footer>
     </div>
+    <script src="http://localhost:3000/api/widget/artisanduval.js" defer></script>
+  </>
   );
 }

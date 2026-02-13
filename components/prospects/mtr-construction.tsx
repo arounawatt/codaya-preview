@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, FormEvent, ReactNode, CSSProperties } from 'react'
+import { TestimonialItem } from '@/types/testimonial'
 
 // ============================================================
 // M.T.R - Maçonnerie, Terrassement, Rénovation
@@ -12,7 +13,14 @@ interface AnimatedCardProps {
   delay?: number
 }
 
-export default function MTRMacon() {
+interface MTRMaconProps {
+  testimonials?: TestimonialItem[]
+  companyName?: string
+  totalReviews?: number
+  score?: number
+}
+
+export default function MTRMacon({ testimonials = [], companyName, totalReviews, score }: MTRMaconProps) {
   const [scrolled, setScrolled] = useState<boolean>(false)
   const [formData, setFormData] = useState<{ name: string; phone: string; message: string }>({
     name: '',
@@ -40,12 +48,12 @@ export default function MTRMacon() {
   // CONFIGURATION DU CLIENT
   // ============================================================
   const config = {
-    name: 'M.T.R',
+    name: companyName ?? 'M.T.R',
     tagline: 'Maçonnerie • Terrassement • Rénovation',
     phone: 'XX XX XX XX XX',
     phoneTel: '+33XXXXXXXXXX',
-    rating: '5,0',
-    reviewCount: 20,
+    rating: score !== undefined ? score.toFixed(1).replace('.', ',') : '5,0',
+    reviewCount: totalReviews ?? 20,
     zone: 'Essonne (91)',
     address: '8 bis Av. Jean Moulin, 91700 Sainte-Geneviève-des-Bois',
     googleReviewsUrl: 'https://maps.app.goo.gl/UYyHNsajW23bPdzt7',
@@ -67,15 +75,6 @@ export default function MTRMacon() {
     { icon: '⏱️', title: 'Respect des délais', desc: "Engagement sur les délais et les coûts. Pas de mauvaises surprises, même en cas d'imprévus." },
     { icon: '📋', title: 'Devis détaillé gratuit', desc: "Devis clair et transparent. Prix fixé à l'avance, sans frais cachés ni surprise." },
     { icon: '💬', title: 'Bons conseils', desc: "À l'écoute de vos besoins avec des conseils précieux. Réseau de contacts pour les travaux complémentaires." },
-  ]
-
-  const testimonials = [
-    { initials: 'AR', name: 'Adrien Revol', date: 'Octobre 2025', text: "Nous recommandons vivement la société MTR suite à la réalisation de notre chantier de drainage et mur de soutènement. La communication est très fluide et réactive, que ça soit avant la signature pour les mises à jour du devis que pendant le chantier." },
-    { initials: 'PE', name: 'Le Petit Écrin', date: 'Octobre 2024', text: "On recommande à 1000% !!! Très sérieux, très professionnel, de très bons conseils et très gentils ! Il a rénové notre appartement aux 2 Alpes entièrement ! Il a fait un travail remarquable." },
-    { initials: 'FM', name: 'Françoise Manjarrès', date: 'Novembre 2023', text: "Terrassement assainissement. Magnifique entreprise, au travail sûr et efficace dans le respect des travaux, qu'ils ont réglées avec calme et compétence. Je recommande." },
-    { initials: 'IA', name: 'Isabel Alicia', date: 'Mai 2021', text: "Des jeunes de confiance, sérieux et professionnels. Nous sommes très satisfaits du travail qui a été réalisé chez nous. On peut facilement communiquer avec eux et ont des bons contacts pour des travaux hors de leurs compétences." },
-    { initials: 'CC', name: 'Céline Cabourdin', date: 'Mars 2022', text: "Rénovation d'une salle de bain. Mr Puel est à l'écoute, travail soigné et sérieux. Ça fait plaisir de voir des jeunes qui ont envie de bosser et qui le font bien." },
-    { initials: 'RB', name: 'Romain Bertoux', date: 'Février 2025', text: "Travaux de maçonnerie et de carrelage réalisés dans le respect des délais et des coûts en dépit des imprévus du chantier. Je recommande !" },
   ]
 
   const trustItems = [
@@ -148,7 +147,6 @@ export default function MTRMacon() {
 
   const s: Record<string, CSSProperties> = {
     wrapper: {
-      fontFamily: "'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       background: colors.offWhite,
       color: colors.gray800,
       lineHeight: 1.6,
@@ -181,7 +179,6 @@ export default function MTRMacon() {
       fontSize: '1.25rem',
     },
     logoTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: '1.4rem',
       fontWeight: 700,
       color: colors.white,
@@ -261,7 +258,6 @@ export default function MTRMacon() {
       marginBottom: '1.5rem',
     },
     heroTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: 'clamp(2.5rem, 5vw, 4rem)',
       color: colors.white,
       lineHeight: 1.1,
@@ -397,7 +393,6 @@ export default function MTRMacon() {
       marginBottom: '1rem',
     },
     sectionTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: 'clamp(2rem, 4vw, 3rem)',
       color: colors.primary,
       marginBottom: '1rem',
@@ -484,7 +479,6 @@ export default function MTRMacon() {
       right: '2rem',
       fontSize: '4rem',
       color: colors.gray200,
-      fontFamily: 'Georgia, serif',
       lineHeight: 1,
     },
     testimonialStars: { color: colors.gold, fontSize: '1.1rem', letterSpacing: '2px', marginBottom: '1rem' },
@@ -520,7 +514,6 @@ export default function MTRMacon() {
       alignItems: 'start',
     },
     contactTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: '2.5rem',
       color: colors.primary,
       marginBottom: '1rem',
@@ -642,8 +635,6 @@ export default function MTRMacon() {
   // STYLES RESPONSIVE
   // ============================================================
   const responsiveStyles = `
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
-
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
@@ -825,9 +816,9 @@ export default function MTRMacon() {
                   <div style={s.testimonialStars}>★★★★★</div>
                   <p style={s.testimonialText}>{t.text}</p>
                   <div style={s.testimonialAuthor}>
-                    <div style={s.authorAvatar}>{t.initials}</div>
+                    <div style={s.authorAvatar}>{t.avatar}</div>
                     <div>
-                      <h4 style={s.authorName}>{t.name}</h4>
+                      <h4 style={s.authorName}>{t.author}</h4>
                       <span style={s.authorDate}>{t.date}</span>
                     </div>
                   </div>

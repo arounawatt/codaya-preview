@@ -1,8 +1,15 @@
 import React from 'react';
+import { TestimonialItem } from '@/types/testimonial';
 
-export default function AGEElectricien() {
+interface AGEElectricienProps {
+  testimonials?: TestimonialItem[]
+  companyName?: string
+  totalReviews?: number
+  score?: number
+}
+
+export default function AGEElectricien({ testimonials = [], companyName, totalReviews, score }: AGEElectricienProps) {
   const pageStyles: React.CSSProperties = {
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     margin: 0,
     padding: 0,
     color: '#1a1a1a',
@@ -277,7 +284,6 @@ export default function AGEElectricien() {
     opacity: 0.2,
     lineHeight: 1,
     marginBottom: '15px',
-    fontFamily: 'Georgia, serif',
   };
 
   const testimonialTextStyles: React.CSSProperties = {
@@ -384,43 +390,10 @@ export default function AGEElectricien() {
     { icon: '⚡', title: 'Réactivité', desc: 'Intervention rapide et disponibilité 7j/7' },
     { icon: '🎓', title: 'Expertise', desc: 'Professionnels qualifiés et certifiés' },
     { icon: '💰', title: 'Prix Justes', desc: 'Devis transparent sans surprise' },
-    { icon: '⭐', title: 'Satisfaction', desc: '5,0/5 étoiles - 130 avis clients' },
+    { icon: '⭐', title: 'Satisfaction', desc: `${score !== undefined ? score.toFixed(1).replace('.', ',') : '5,0'}/5 étoiles - ${totalReviews ?? 130} avis clients` },
   ];
 
-  const testimonials = [
-    {
-      text: "Nous avons fait appel à AGE pour la rénovation complète de l'électricité d'une ancienne maison. Devis clair, prix tout à fait correct. De bons conseils !",
-      author: 'Diane Bousquet',
-      date: 'Janvier 2025',
-    },
-    {
-      text: "Réactif, disponible et à l'écoute. Devis sans surprise, installation propre et technicien très agréable, réponds aux questions sans problème.",
-      author: 'A C',
-      date: 'Juillet 2024',
-    },
-    {
-      text: "Devis détaillé et raisonnable. Travaux exécutés dans les temps et avec soin avec de la flexibilité pour les petits ajustements lors du chantier. À recommander !",
-      author: 'Marc Alhadeff',
-      date: 'Mars 2024',
-    },
-    {
-      text: "Très bonne expérience avec ce prestataire. Travail sérieux réalisé dans les délais. Chantier propre à l'issue des travaux. Je recommande.",
-      author: 'Yves Yvernes',
-      date: 'Octobre 2025',
-    },
-    {
-      text: "Personne très compétente. Sympa, ponctuel et très professionnel. Ses tarifs sont très corrects. Je recommande vivement.",
-      author: 'Christine Thomas',
-      date: 'Septembre 2025',
-    },
-    {
-      text: "Très content du travail effectué. Un changement de tableau électrique et mise à la terre. Travail effectué à la date convenue et pour le prix convenu.",
-      author: 'Philippe Delobel',
-      date: 'Avril 2025',
-    },
-  ];
-
-  return (
+  return (<>
     <div style={pageStyles}>
       {/* CSS Animations */}
       <style>{`
@@ -542,11 +515,11 @@ export default function AGEElectricien() {
           </div>
           <div className="hero-stats" style={heroStatsStyles}>
             <div style={statItemStyles}>
-              <span style={statNumberStyles}>5.0★</span>
+              <span style={statNumberStyles}>{score !== undefined ? score.toFixed(1) : '5.0'}★</span>
               <span style={statLabelStyles}>Note Parfaite</span>
             </div>
             <div style={statItemStyles}>
-              <span style={statNumberStyles}>130</span>
+              <span style={statNumberStyles}>{totalReviews ?? 130}</span>
               <span style={statLabelStyles}>Avis Clients</span>
             </div>
             <div style={statItemStyles}>
@@ -606,7 +579,7 @@ export default function AGEElectricien() {
         <div style={containerStyles}>
           <h2 style={sectionTitleStyles}>Témoignages Clients</h2>
           <p style={sectionSubtitleStyles}>
-            130 clients satisfaits témoignent de notre excellence
+            {totalReviews ?? 130} clients satisfaits témoignent de notre excellence
           </p>
           <div style={testimonialsGridStyles}>
             {testimonials.map((testimonial, index) => (
@@ -616,7 +589,7 @@ export default function AGEElectricien() {
                 <p style={testimonialTextStyles}>{testimonial.text}</p>
                 <div style={testimonialAuthorStyles}>
                   <div style={avatarStyles}>
-                    {testimonial.author.charAt(0)}
+                    {testimonial.avatar}
                   </div>
                   <div>
                     <div style={authorNameStyles}>{testimonial.author}</div>
@@ -653,5 +626,7 @@ export default function AGEElectricien() {
         </p>
       </footer>
     </div>
+    <script src="http://localhost:3000/api/widget/age-electricien.js" defer></script>
+  </>
   );
 }

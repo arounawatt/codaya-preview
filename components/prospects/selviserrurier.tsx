@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, FormEvent, ReactNode, CSSProperties } from 'react'
+import { TestimonialItem } from '@/types/testimonial'
 
 // ============================================================
 // SELVI SERRURIER - Dépannage Serrurerie 24h/24
@@ -12,7 +13,14 @@ interface AnimatedCardProps {
   delay?: number
 }
 
-export default function SelviSerrurier() {
+interface SelviSerrurierProps {
+  testimonials?: TestimonialItem[]
+  companyName?: string
+  totalReviews?: number
+  score?: number
+}
+
+export default function SelviSerrurier({ testimonials = [], companyName, totalReviews, score }: SelviSerrurierProps) {
   const [scrolled, setScrolled] = useState<boolean>(false)
   const [formData, setFormData] = useState<{ name: string; phone: string; message: string }>({
     name: '',
@@ -40,12 +48,12 @@ export default function SelviSerrurier() {
   // CONFIGURATION DU CLIENT
   // ============================================================
   const config = {
-    name: 'Selvi Serrurier',
+    name: companyName ?? 'Selvi Serrurier',
     tagline: 'Dépannage Serrurerie 24h/24',
     phone: '06 18 17 15 14',
     phoneTel: '+33618171514',
-    rating: '4,5',
-    reviewCount: 82,
+    rating: score !== undefined ? score.toFixed(1).replace('.', ',') : '4,5',
+    reviewCount: totalReviews ?? 82,
     zone: 'Essonne (91)',
     googleReviewsUrl: 'https://g.page/r/selvi-serrurier',
   }
@@ -66,13 +74,6 @@ export default function SelviSerrurier() {
     { icon: '🔒', title: 'Toutes serrures', desc: "Expertise sur tous types de serrures : classiques, 3 points, portes blindées, serrures à code, etc." },
     { icon: '📋', title: 'Devis transparent', desc: "Prix communiqué par téléphone. Aucun frais caché. Paiement après intervention uniquement." },
     { icon: '🌙', title: 'Dispo nuit & week-end', desc: "Urgences prises en charge même tard dans la nuit. Intervention rapide le week-end et jours fériés." },
-  ]
-
-  const testimonials = [
-    { initials: 'MB', name: 'Malik B.', date: 'Janvier 2025', text: "Service rapide, sérieux, efficace, gentil et pas cher. Bravo ! Intervention ce dimanche, je recommande vivement." },
-    { initials: 'CL', name: 'Chaïnez L.', date: 'Janvier 2023', text: "Ce serrurier est très professionnel et doué, il était disponible directement et a ouvert ma porte en moins d'une minute. Impressionnant ! Tarif hors compétition, très sérieux." },
-    { initials: 'GP', name: 'Gaëlle P.', date: 'Janvier 2023', text: "Serrurier très aimable et très professionnel. Intervention rapide et efficace, tarif plus que correct. Nous avions claqué la porte en laissant les clés dessus. Je recommande sans hésitation !" },
-    { initials: 'ST', name: 'Sophie T.', date: 'Septembre 2023', text: "Serrurier sérieux et honnête. Très compétent et réactif. Problème réglé avec changement de pièces en moins de 2h. Prix honnête. Très sympathique en plus !" },
   ]
 
   const trustItems = [
@@ -145,7 +146,6 @@ export default function SelviSerrurier() {
 
   const s: Record<string, CSSProperties> = {
     wrapper: {
-      fontFamily: "'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       background: colors.offWhite,
       color: colors.gray800,
       lineHeight: 1.6,
@@ -178,7 +178,6 @@ export default function SelviSerrurier() {
       fontSize: '1.25rem',
     },
     logoTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: '1.4rem',
       fontWeight: 700,
       color: colors.white,
@@ -258,7 +257,6 @@ export default function SelviSerrurier() {
       marginBottom: '1.5rem',
     },
     heroTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: 'clamp(2.5rem, 5vw, 4rem)',
       color: colors.white,
       lineHeight: 1.1,
@@ -394,7 +392,6 @@ export default function SelviSerrurier() {
       marginBottom: '1rem',
     },
     sectionTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: 'clamp(2rem, 4vw, 3rem)',
       color: colors.primary,
       marginBottom: '1rem',
@@ -481,7 +478,6 @@ export default function SelviSerrurier() {
       right: '2rem',
       fontSize: '4rem',
       color: colors.gray200,
-      fontFamily: 'Georgia, serif',
       lineHeight: 1,
     },
     testimonialStars: { color: colors.gold, fontSize: '1.1rem', letterSpacing: '2px', marginBottom: '1rem' },
@@ -517,7 +513,6 @@ export default function SelviSerrurier() {
       alignItems: 'start',
     },
     contactTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: '2.5rem',
       color: colors.primary,
       marginBottom: '1rem',
@@ -639,8 +634,6 @@ export default function SelviSerrurier() {
   // STYLES RESPONSIVE
   // ============================================================
   const responsiveStyles = `
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
-    
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
@@ -682,6 +675,7 @@ export default function SelviSerrurier() {
   // RENDER
   // ============================================================
   return (
+    <>
     <div style={s.wrapper}>
       <style>{responsiveStyles}</style>
 
@@ -822,9 +816,9 @@ export default function SelviSerrurier() {
                   <div style={s.testimonialStars}>★★★★★</div>
                   <p style={s.testimonialText}>{t.text}</p>
                   <div style={s.testimonialAuthor}>
-                    <div style={s.authorAvatar}>{t.initials}</div>
+                    <div style={s.authorAvatar}>{t.avatar}</div>
                     <div>
-                      <h4 style={s.authorName}>{t.name}</h4>
+                      <h4 style={s.authorName}>{t.author}</h4>
                       <span style={s.authorDate}>{t.date}</span>
                     </div>
                   </div>
@@ -947,5 +941,7 @@ export default function SelviSerrurier() {
         <a href={`tel:${config.phoneTel}`} style={s.floatingCtaLink}>📞 Urgence serrurier</a>
       </div>
     </div>
+    <script src="http://localhost:3000/api/widget/selviserrurier.js" defer></script>
+    </>
   )
 }

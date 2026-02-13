@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, FormEvent, ReactNode, CSSProperties } from 'react'
+import { TestimonialItem } from '@/types/testimonial'
 
 // ============================================================
 // MR LEROY URGENCES - Plombier Compagnon de France
@@ -11,13 +12,6 @@ interface ServiceItem {
   icon: string
   title: string
   desc: string
-}
-
-interface TestimonialItem {
-  initials: string
-  name: string
-  date: string
-  text: string
 }
 
 interface TrustItem {
@@ -31,7 +25,14 @@ interface AnimatedCardProps {
   delay?: number
 }
 
-export default function MrLeroyUrgences() {
+interface MrLeroyUrgencesProps {
+  testimonials?: TestimonialItem[]
+  companyName?: string
+  totalReviews?: number
+  score?: number
+}
+
+export default function MrLeroyUrgences({ testimonials = [], companyName, totalReviews, score }: MrLeroyUrgencesProps) {
   const [scrolled, setScrolled] = useState<boolean>(false)
   const [formData, setFormData] = useState<{ name: string; phone: string; message: string }>({
     name: '',
@@ -59,12 +60,12 @@ export default function MrLeroyUrgences() {
   // CONFIGURATION DU CLIENT
   // ============================================================
   const config = {
-    name: 'Mr Leroy Urgences',
+    name: companyName ?? 'Mr Leroy Urgences',
     tagline: 'Compagnon de France',
     phone: '06 66 69 73 92',
     phoneTel: '+33666697392',
-    rating: '4,8',
-    reviewCount: 169,
+    rating: score !== undefined ? score.toFixed(1).replace('.', ',') : '4,8',
+    reviewCount: totalReviews ?? 169,
     zone: 'Île-de-France',
     googleReviewsUrl: 'https://www.google.com/search?q=mr+leroy+urgences',
   }
@@ -85,13 +86,6 @@ export default function MrLeroyUrgences() {
     { icon: '📋', title: 'Devis transparent', desc: "Prix annoncés et respectés. Pas de mauvaise surprise à la fin de l'intervention." },
     { icon: '⏱️', title: 'Ponctualité garantie', desc: 'Respect des horaires annoncés. Votre temps est précieux, nous le respectons.' },
     { icon: '🛡️', title: 'Conseils préventifs', desc: 'Au-delà de la réparation, nous vous donnons les clés pour éviter les problèmes futurs.' },
-  ]
-
-  const testimonials: TestimonialItem[] = [
-    { initials: 'SC', name: 'Sabri C.', date: 'Janvier 2026', text: "Un grand merci pour ce travail de qualité ! Artisan à l'écoute, de très bon conseil et vraiment passionné par son métier. Le résultat est au-delà de mes attentes." },
-    { initials: 'F', name: 'Fab', date: 'Mars 2025', text: "J'ai fait appel à M. Leroy pour des travaux chez moi. Travail propre, sérieux et dans les délais. Il prend le temps de bien expliquer ce qu'il fait, et ça met en confiance." },
-    { initials: 'BS', name: 'Bob S.', date: 'Avril 2025', text: "Ponctuel, efficace et très sympathique. Il a réparé une fuite que d'autres n'avaient pas su localiser. Franchement, je suis bluffé par la qualité du service." },
-    { initials: 'AS', name: 'Anne Sophie B.', date: 'Mars 2025', text: "M. Leroy est sérieux, appliqué et à l'écoute. Les finitions sont soignées et le chantier a été laissé propre. Une vraie écoute et des conseils avisés." },
   ]
 
   const trustItems: TrustItem[] = [
@@ -163,7 +157,6 @@ export default function MrLeroyUrgences() {
   const s: Record<string, CSSProperties> = {
     // Global
     wrapper: {
-      fontFamily: "'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       background: colors.offWhite,
       color: colors.gray800,
       lineHeight: 1.6,
@@ -198,7 +191,6 @@ export default function MrLeroyUrgences() {
       fontSize: '1.25rem',
     },
     logoTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: '1.4rem',
       fontWeight: 700,
       color: colors.white,
@@ -280,7 +272,6 @@ export default function MrLeroyUrgences() {
       marginBottom: '1.5rem',
     },
     heroTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: 'clamp(2.5rem, 5vw, 4rem)',
       color: colors.white,
       lineHeight: 1.1,
@@ -430,7 +421,6 @@ export default function MrLeroyUrgences() {
       marginBottom: '1rem',
     },
     sectionTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: 'clamp(2rem, 4vw, 3rem)',
       color: colors.primary,
       marginBottom: '1rem',
@@ -523,7 +513,6 @@ export default function MrLeroyUrgences() {
       right: '2rem',
       fontSize: '4rem',
       color: colors.gray200,
-      fontFamily: 'Georgia, serif',
       lineHeight: 1,
     },
     testimonialStars: { color: colors.gold, fontSize: '1.1rem', letterSpacing: '2px', marginBottom: '1rem' },
@@ -561,7 +550,6 @@ export default function MrLeroyUrgences() {
       alignItems: 'start',
     },
     contactTitle: {
-      fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: '2.5rem',
       color: colors.primary,
       marginBottom: '1rem',
@@ -687,8 +675,6 @@ export default function MrLeroyUrgences() {
   // STYLES RESPONSIVE
   // ============================================================
   const responsiveStyles = `
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
-    
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
@@ -872,9 +858,9 @@ export default function MrLeroyUrgences() {
                   <div style={s.testimonialStars}>★★★★★</div>
                   <p style={s.testimonialText}>{t.text}</p>
                   <div style={s.testimonialAuthor}>
-                    <div style={s.authorAvatar}>{t.initials}</div>
+                    <div style={s.authorAvatar}>{t.avatar}</div>
                     <div>
-                      <h4 style={s.authorName}>{t.name}</h4>
+                      <h4 style={s.authorName}>{t.author}</h4>
                       <span style={s.authorDate}>{t.date}</span>
                     </div>
                   </div>
