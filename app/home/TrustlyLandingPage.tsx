@@ -12,6 +12,24 @@ interface TrustlyLandingPageProps {
 
 export default function TrustlyLandingPage({demoReviews, host}:TrustlyLandingPageProps) {
   const [activeReview, setActiveReview] = useState(0);
+  const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
+
+  const handleCheckout = async (plan: 'monthly' | 'annual') => {
+    setCheckoutLoading(plan);
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plan }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch {
+      setCheckoutLoading(null);
+    }
+  };
 
   useEffect(() => {
     if (demoReviews.length === 0) return;
@@ -1354,6 +1372,7 @@ export default function TrustlyLandingPage({demoReviews, host}:TrustlyLandingPag
               }}>
                 49&euro;
                 <span style={{ fontSize: '22px', color: '#999', fontWeight: 600 }}>/mois</span>
+                <span style={{ fontSize: '13px', color: '#999', fontWeight: 600 }}> HT</span>
               </div>
 
               <p style={{
@@ -1412,8 +1431,10 @@ export default function TrustlyLandingPage({demoReviews, host}:TrustlyLandingPag
                 e.currentTarget.style.background = 'white';
                 e.currentTarget.style.color = '#667eea';
                 e.currentTarget.style.transform = 'translateY(0)';
-              }}>
-                Choisir mensuel
+              }}
+              disabled={checkoutLoading !== null}
+              onClick={() => handleCheckout('monthly')}>
+                {checkoutLoading === 'monthly' ? 'Redirection...' : 'Choisir mensuel'}
               </button>
             </div>
 
@@ -1467,6 +1488,7 @@ export default function TrustlyLandingPage({demoReviews, host}:TrustlyLandingPag
               }}>
                 39&euro;
                 <span style={{ fontSize: '22px', color: '#999' }}>/mois</span>
+                <span style={{ fontSize: '13px', color: '#999' }}> HT</span>
               </div>
 
               <p style={{
@@ -1474,7 +1496,7 @@ export default function TrustlyLandingPage({demoReviews, host}:TrustlyLandingPag
                 color: '#999',
                 marginBottom: '8px'
               }}>
-                Facturé 468&euro;/an
+                Facturé 468&euro; HT/an
               </p>
 
               <div style={{
@@ -1538,8 +1560,10 @@ export default function TrustlyLandingPage({demoReviews, host}:TrustlyLandingPag
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = '0 8px 24px rgba(102, 126, 234, 0.3)';
-              }}>
-                Choisir annuel &rarr;
+              }}
+              disabled={checkoutLoading !== null}
+              onClick={() => handleCheckout('annual')}>
+                {checkoutLoading === 'annual' ? 'Redirection...' : 'Choisir annuel \u2192'}
               </button>
             </div>
           </div>
