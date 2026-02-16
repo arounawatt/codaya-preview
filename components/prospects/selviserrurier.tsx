@@ -668,6 +668,8 @@ export default function SelviSerrurier({ testimonials = [], companyName, totalRe
       .selvi-footer-bottom { flex-direction: column !important; gap: 1rem !important; text-align: center !important; }
       .selvi-floating-cta { left: 1rem !important; right: 1rem !important; bottom: 1rem !important; }
       .selvi-floating-cta a { justify-content: center !important; }
+      header { flex-direction: column; gap: 6px}
+      .selvi-hero { padding-top:10rem !important; }
     }
   `
 
@@ -941,7 +943,7 @@ export default function SelviSerrurier({ testimonials = [], companyName, totalRe
         <a href={`tel:${config.phoneTel}`} style={s.floatingCtaLink}>📞 Urgence serrurier</a>
       </div>
     </div>
-    <script src="http://localhost:3000/api/widget/selviserrurier.js" defer></script>
+    <script src="https://trustly.codaya.fr/api/widget/selviserrurier.js" defer></script>
     </>
   )
 }

@@ -709,7 +709,9 @@ export default function MrLeroyUrgences({ testimonials = [], companyName, totalR
       .mr-leroy-footer-bottom { flex-direction: column !important; gap: 1rem !important; text-align: center !important; }
       .mr-leroy-floating-cta { left: 1rem !important; right: 1rem !important; bottom: 1rem !important; }
       .mr-leroy-floating-cta a { justify-content: center !important; }
-    }
+      .header { flex-direction: column; gap: 6px}
+      .mr-leroy-hero { padding-top:10rem !important; }
+      }
   `
 
   // ============================================================
@@ -720,7 +722,7 @@ export default function MrLeroyUrgences({ testimonials = [], companyName, totalR
       <style>{responsiveStyles}</style>
 
       {/* Header */}
-      <header style={s.header}>
+      <header className="header" style={s.header}>
         <div style={s.logo}>
           <div style={s.logoIcon}>🔧</div>
           <div>

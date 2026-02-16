@@ -611,7 +611,7 @@ export default function ArtisanDuvalCouvreur({ testimonials = [], companyName, t
         </p>
       </footer>
     </div>
-    <script src="http://localhost:3000/api/widget/artisanduval.js" defer></script>
+    <script src="https://trustly.codaya.fr/api/widget/artisanduval.js" defer></script>
   </>
   );
 }

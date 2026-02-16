@@ -669,6 +669,8 @@ export default function MTRMacon({ testimonials = [], companyName, totalReviews,
       .mtr-footer-bottom { flex-direction: column !important; gap: 1rem !important; text-align: center !important; }
       .mtr-floating-cta { left: 1rem !important; right: 1rem !important; bottom: 1rem !important; }
       .mtr-floating-cta a { justify-content: center !important; }
+      header { flex-direction: column; gap: 6px}
+      .mtr-hero { padding-top: 12rem !important; }
     }
   `
 

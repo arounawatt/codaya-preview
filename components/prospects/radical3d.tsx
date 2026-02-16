@@ -668,6 +668,8 @@ export default function Radical3D({ testimonials = [], companyName, totalReviews
       .radical3d-footer-bottom { flex-direction: column !important; gap: 1rem !important; text-align: center !important; }
       .radical3d-floating-cta { left: 1rem !important; right: 1rem !important; bottom: 1rem !important; }
       .radical3d-floating-cta a { justify-content: center !important; }
+      header { flex-direction: column; gap: 6px}
+      .radical-3d-hero { padding-top:10rem !important; }
     }
   `
 

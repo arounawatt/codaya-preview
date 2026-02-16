@@ -626,7 +626,7 @@ export default function AGEElectricien({ testimonials = [], companyName, totalRe
         </p>
       </footer>
     </div>
-    <script src="http://localhost:3000/api/widget/age-electricien.js" defer></script>
+    <script src="https://trustly.codaya.fr/api/widget/age-electricien.js" defer></script>
   </>
   );
 }

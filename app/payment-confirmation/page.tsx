@@ -1,8 +1,13 @@
 import { redirect } from 'next/navigation'
 import Stripe from 'stripe'
+import { Resend } from 'resend'
 
 function getStripe() {
   return new Stripe(process.env.STRIPE_SECRET_KEY!)
+}
+
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY!)
 }
 
 export default async function PaymentConfirmationPage({
@@ -26,6 +31,23 @@ export default async function PaymentConfirmationPage({
 
   if (session.payment_status !== 'paid') {
     redirect('/')
+  }
+
+  const customerEmail = session.customer_details?.email
+  if (customerEmail) {
+    const resend = getResend()
+    await resend.emails.send({
+      from: 'Trustly by Codaya <contact@codaya.agency>',
+      to: customerEmail,
+      subject: 'Bienvenue chez Trustly — Prochaine étape',
+      template: {
+        id: '1d6f7824-2428-4b0d-8822-54317947e950',
+        variables: {
+          customerName: session.customer_details?.name ?? '',
+          typeformUrl: process.env.TYPEFORM_URL!,
+        },
+      },
+    }).catch(() => {})
   }
 
   const amountTotal = session.amount_total ? `${(session.amount_total / 100).toFixed(0)}\u20AC` : ''
