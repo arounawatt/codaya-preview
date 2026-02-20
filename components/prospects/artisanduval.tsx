@@ -609,6 +609,7 @@ export default function ArtisanDuvalCouvreur({ testimonials = [], companyName, t
           © 2025 Artisan Duval - Tous droits réservés<br />
           Expert en couverture, zinguerie et rénovation de toiture
         </p>
+        <a href="/mentions-legales" style={{ color: '#94a3b8', fontSize: '0.85rem', textDecoration: 'none', marginTop: '12px', display: 'inline-block' }}>Mentions légales</a>
       </footer>
     </div>
     <script src="https://trustly.codaya.fr/api/widget/artisanduval.js" defer></script>

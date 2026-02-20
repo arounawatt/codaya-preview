@@ -18,6 +18,8 @@ export interface CompanyData {
   displayPhone: string
   googleMapUrl: string
   city: string
+  address: string
+  email: string
   website?: string
 }
 

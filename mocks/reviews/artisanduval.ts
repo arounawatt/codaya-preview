@@ -60,5 +60,6 @@ export const companyData: CompanyData = {
   phone: '+33970357010',
   googleMapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!1s0x47e5df598d6be52b:0x891f7764d44860e?sa=X&ved=1t:8290&ictx=111',
   city: 'Évry-Courcouronnes',
+  email: 'arouna.watt@gmail.com',
   website: '',
 }

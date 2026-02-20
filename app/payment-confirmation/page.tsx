@@ -39,7 +39,6 @@ export default async function PaymentConfirmationPage({
     await resend.emails.send({
       from: 'Trustly by Codaya <contact@codaya.agency>',
       to: customerEmail,
-      subject: 'Bienvenue chez Trustly — Prochaine étape',
       template: {
         id: '1d6f7824-2428-4b0d-8822-54317947e950',
         variables: {

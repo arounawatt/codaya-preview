@@ -624,6 +624,7 @@ export default function AGEElectricien({ testimonials = [], companyName, totalRe
           © 2025 A.G.E - Tous droits réservés<br />
           Électricien professionnel certifié • Installation • Dépannage • Rénovation
         </p>
+        <a href="/mentions-legales" style={{ color: '#c7d2fe', fontSize: '0.85rem', textDecoration: 'none', marginTop: '12px', display: 'inline-block' }}>Mentions légales</a>
       </footer>
     </div>
     <script src="https://trustly.codaya.fr/api/widget/age-electricien.js" defer></script>

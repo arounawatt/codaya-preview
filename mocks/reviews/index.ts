@@ -7,10 +7,10 @@ import { companyData as radical3d } from './radical3d'
 import { companyData as selviserrurier } from './selviserrurier'
 
 export const companiesBySlug: Record<string, CompanyData> = {
-  'mrleroyurgences': mrleroyurgences,
-  'age-electricien': ageElectricien,
-  'artisanduval': artisanduval,
-  'mtr-construction': mtrConstruction,
-  'radical3d': radical3d,
-  'selviserrurier': selviserrurier,
+  // 'mrleroyurgences': mrleroyurgences,
+  // 'age-electricien': ageElectricien,
+  // 'artisanduval': artisanduval,
+  // 'mtr-construction': mtrConstruction,
+  // 'radical3d': radical3d,
+  // 'selviserrurier': selviserrurier,
 }

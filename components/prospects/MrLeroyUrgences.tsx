@@ -967,7 +967,7 @@ export default function MrLeroyUrgences({ testimonials = [], companyName, totalR
               <ul style={s.footerLinksList}>
                 <li><a href={`tel:${config.phoneTel}`} style={s.footerLink}>{config.phone}</a></li>
                 <li><a href="#contact" style={s.footerLink}>Demander un devis</a></li>
-                <li><a href="#" style={s.footerLink}>Mentions légales</a></li>
+                <li><a href="/mentions-legales" style={s.footerLink}>Mentions légales</a></li>
               </ul>
             </div>
           </div>

@@ -931,9 +931,12 @@ export default function MTRMacon({ testimonials = [], companyName, totalReviews,
           </div>
           <div style={s.footerBottom} className="mtr-footer-bottom">
             <p style={s.footerCopyright}>© 2025 {config.name} - Tous droits réservés</p>
-            <a href={config.googleReviewsUrl} target="_blank" rel="noopener noreferrer" style={s.googleReviewsLink}>
-              ⭐ Voir nos {config.reviewCount} avis Google
-            </a>
+            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+              <a href={config.googleReviewsUrl} target="_blank" rel="noopener noreferrer" style={s.googleReviewsLink}>
+                ⭐ Voir nos {config.reviewCount} avis Google
+              </a>
+              <a href="/mentions-legales" style={s.footerLink}>Mentions légales</a>
+            </div>
           </div>
         </div>
       </footer>

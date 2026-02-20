@@ -363,7 +363,7 @@ export default function TrustlyLandingPage({demoReviews, host}:TrustlyLandingPag
                 e.currentTarget.style.color = '#667eea';
               }}
               onClick={() => window.location.href = '#demo'}>
-                Voir les exemples
+                Voir des demos
               </button>
             </div>
 
@@ -1180,12 +1180,11 @@ export default function TrustlyLandingPage({demoReviews, host}:TrustlyLandingPag
           </div>
           <h2 style={{
             fontSize: '42px',
-            
             lineHeight: '1.2',
             marginBottom: '24px',
             color: '#1a1a1a'
           }}>
-            Ils nous font déjà confiance
+            Voici à quoi pourrait ressembler votre site
           </h2>
           <p style={{
             fontSize: '20px',
@@ -1753,7 +1752,7 @@ export default function TrustlyLandingPage({demoReviews, host}:TrustlyLandingPag
               e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
               e.currentTarget.style.color = 'white';
             }}>
-              Voir les exemples
+              Voir des demos
             </button>
           </div>
         </div>

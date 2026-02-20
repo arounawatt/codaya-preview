@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation';
 import { getCompanyBySlug } from '@/lib/services/reviews';
-import WallOfLoveCarousel from './WallOfLoveCarousel';
+import ShareQrCodePage from './ShareQrCodePage';
 
-interface WallOfLovePageProps {
+interface ShareQrCodePageProps {
   searchParams: Promise<{ subdomain?: string }>;
 }
 
-export default async function WallOfLovePage({ searchParams }: WallOfLovePageProps) {
+export default async function ShareQrCode({ searchParams }: ShareQrCodePageProps) {
   const { subdomain } = await searchParams;
 
   if (!subdomain) return notFound();
@@ -15,17 +15,12 @@ export default async function WallOfLovePage({ searchParams }: WallOfLovePagePro
   if (!company) return notFound();
 
   return (
-    <WallOfLoveCarousel
+    <ShareQrCodePage
       slug={company.slug}
       companyName={company.companyName}
-      companyPhone={company.phone}
-      companyDisplayPhone={company.displayPhone}
-      googleMapUrl={company.googleMapUrl}
-      companyWebsite={company.website}
       category={company.category}
       score={company.score}
       totalReviews={company.totalReviews}
-      reviews={company.reviews}
     />
   );
 }
