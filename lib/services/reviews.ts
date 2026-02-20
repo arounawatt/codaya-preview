@@ -1,11 +1,12 @@
-import { companiesBySlug } from '@/mocks/reviews'
+import dbConnect from '@/lib/mongoose'
+import { Company } from '@/lib/models/Company'
 import { CompanyData, HomeReview } from '@/types/testimonial'
 
-// Demain : remplacer les imports mocks par des appels MongoDB ici.
-// Toutes les pages et API routes consomment ces fonctions — rien d'autre à changer.
-
 export async function getHomeReviews(): Promise<HomeReview[]> {
-  return Object.values(companiesBySlug).map((company) => ({
+  await dbConnect()
+  const companies = await Company.find().lean<CompanyData[]>()
+
+  return companies.map((company) => ({
     ...company.reviews[0],
     slug: company.slug,
     companyName: company.companyName,
@@ -16,7 +17,17 @@ export async function getHomeReviews(): Promise<HomeReview[]> {
 }
 
 export async function getCompanyBySlug(slug: string): Promise<CompanyData | null> {
-  return companiesBySlug[slug] ?? null
+  await dbConnect()
+  return Company.findOne({ slug }).lean<CompanyData | null>()
+}
+
+export async function updateReviewsBySlug(
+  slug: string,
+  reviews: CompanyData['reviews']
+): Promise<boolean> {
+  await dbConnect()
+  const result = await Company.updateOne({ slug }, { $set: { reviews } })
+  return result.matchedCount > 0
 }
 
 export async function getReviewsBySlug(
@@ -24,7 +35,8 @@ export async function getReviewsBySlug(
   offset = 0,
   limit?: number
 ): Promise<{ reviews: CompanyData['reviews']; total: number } | null> {
-  const company = companiesBySlug[slug]
+  await dbConnect()
+  const company = await Company.findOne({ slug }).lean<CompanyData | null>()
   if (!company) return null
 
   const end = limit ? offset + limit : undefined

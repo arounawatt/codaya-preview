@@ -16,5 +16,6 @@ export const companyData: CompanyData = {
   phone: '+330666697392',
   googleMapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!1s0x47e5e152538aa5b5:0x45915ef000d7c0de?sa=X&ved=1t:8290&ictx=111',
   city: 'Évry-Courcouronnes',
+  email: 'contact@mrleroyurgences.fr',
   website: '',
 }

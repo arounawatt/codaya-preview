@@ -1,4 +1,90 @@
-export default function MentionsLegales() {
+import { notFound } from 'next/navigation'
+import { getCompanyBySlug } from '@/lib/services/reviews'
+
+interface PageProps {
+  searchParams: Promise<{ subdomain?: string }>
+}
+
+export default async function MentionsLegales({ searchParams }: PageProps) {
+  const { subdomain } = await searchParams
+
+  if (subdomain) {
+    const company = await getCompanyBySlug(subdomain)
+    if (!company) return notFound()
+
+    const siteUrl = company.website || `https://${subdomain}.codaya.fr`
+
+    return (
+      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '80px 24px', color: '#1a1a1a' }}>
+        <a href="/" style={{ color: '#667eea', textDecoration: 'none', fontSize: '14px' }}>&larr; Retour</a>
+
+        <h1 style={{ fontSize: '36px', fontWeight: 800, marginTop: '32px', marginBottom: '40px' }}>
+          Mentions légales
+        </h1>
+
+        <section style={{ marginBottom: '40px' }}>
+          <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '16px', color: '#667eea' }}>1. Éditeur du site</h2>
+          <p style={{ lineHeight: '1.8', color: '#444' }}>
+            Le site <strong>{siteUrl}</strong> est édité par :<br />
+            <strong>{company.companyName}</strong><br />
+            {company.address}<br />
+            {company.city}<br />
+            Téléphone : {company.displayPhone}<br />
+            Email : {company.email}<br />
+            Directeur de la publication : {company.companyName}
+          </p>
+        </section>
+
+        <section style={{ marginBottom: '40px' }}>
+          <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '16px', color: '#667eea' }}>2. Conception et développement</h2>
+          <p style={{ lineHeight: '1.8', color: '#444' }}>
+            Ce site a été conçu et développé par :<br />
+            <strong>Fedde Business Technologies</strong><br />
+            Prestataire de services numériques<br />
+            Site : <a href="https://codaya.fr" style={{ color: '#667eea' }}>codaya.fr</a>
+          </p>
+        </section>
+
+        <section style={{ marginBottom: '40px' }}>
+          <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '16px', color: '#667eea' }}>3. Hébergement</h2>
+          <p style={{ lineHeight: '1.8', color: '#444' }}>
+            Le site est hébergé par :<br />
+            <strong>Netlify Inc.</strong><br />
+            512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis<br />
+            Site : <a href="https://netlify.com" style={{ color: '#667eea' }}>netlify.com</a><br /><br />
+            L&apos;hébergement est géré par <strong>Fedde Business Technologies</strong> pour le compte de {company.companyName}.
+          </p>
+        </section>
+
+        <section style={{ marginBottom: '40px' }}>
+          <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '16px', color: '#667eea' }}>4. Propriété intellectuelle</h2>
+          <p style={{ lineHeight: '1.8', color: '#444' }}>
+            L&apos;ensemble des contenus présents sur ce site (textes, images, logos, avis) est la propriété de {company.companyName} ou est utilisé avec son autorisation. Toute reproduction ou représentation, en tout ou en partie, à d&apos;autres fins est interdite sans autorisation préalable.
+          </p>
+        </section>
+
+        <section style={{ marginBottom: '40px' }}>
+          <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '16px', color: '#667eea' }}>5. Données personnelles</h2>
+          <p style={{ lineHeight: '1.8', color: '#444' }}>
+            Ce site ne collecte pas de données personnelles sans le consentement préalable de l&apos;utilisateur. Les avis affichés sont récupérés depuis la fiche Google de l&apos;entreprise. Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d&apos;un droit d&apos;accès, de rectification et de suppression des données vous concernant. Pour exercer ce droit, contactez : <strong>{company.email}</strong>
+          </p>
+        </section>
+
+        <section style={{ marginBottom: '40px' }}>
+          <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '16px', color: '#667eea' }}>6. Droit applicable</h2>
+          <p style={{ lineHeight: '1.8', color: '#444' }}>
+            Les présentes mentions légales sont régies par le droit français. Tout litige sera soumis aux tribunaux compétents du ressort du siège social de {company.companyName}.
+          </p>
+        </section>
+
+        <p style={{ fontSize: '13px', color: '#999', marginTop: '60px', paddingTop: '24px', borderTop: '1px solid #eee' }}>
+          Dernière mise à jour : février 2025
+        </p>
+      </div>
+    )
+  }
+
+  // Page statique pour le domaine principal (sans subdomain)
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '80px 24px', color: '#1a1a1a' }}>
       <a href="/" style={{ color: '#667eea', textDecoration: 'none', fontSize: '14px' }}>&larr; Retour</a>
@@ -11,10 +97,9 @@ export default function MentionsLegales() {
         <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '16px', color: '#667eea' }}>1. Éditeur du site</h2>
         <p style={{ lineHeight: '1.8', color: '#444' }}>
           Le site <strong>trustly.codaya.fr</strong> est édité par :<br />
-          <strong>Codaya Agency</strong><br />
-          Société par action simplifiée<br />
+          <strong>Fedde Business Technologies</strong><br />
           Email : contact@codaya.agency<br />
-          Directeur de la publication : Codaya Agency
+          Directeur de la publication : Fedde Business Technologies
         </p>
       </section>
 
@@ -70,21 +155,21 @@ export default function MentionsLegales() {
       <section style={{ marginBottom: '40px' }}>
         <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '16px', color: '#667eea' }}>7. Propriété intellectuelle</h2>
         <p style={{ lineHeight: '1.8', color: '#444' }}>
-          Le client reste propriétaire de l&apos;ensemble de ses contenus (textes, logos, photos). Le design et le code du site restent la propriété de Codaya Agency. En cas de résiliation, le site est désactivé et le sous-domaine libéré.
+          Le client reste propriétaire de l&apos;ensemble de ses contenus (textes, logos, photos). Le design et le code du site restent la propriété de Fedde Business Technologies. En cas de résiliation, le site est désactivé et le sous-domaine libéré.
         </p>
       </section>
 
       <section style={{ marginBottom: '40px' }}>
         <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '16px', color: '#667eea' }}>8. Responsabilité</h2>
         <p style={{ lineHeight: '1.8', color: '#444' }}>
-          Codaya Agency s&apos;engage à fournir un service de qualité mais ne saurait être tenue responsable des avis publiés par des tiers sur Google. Les avis affichés sur le site et le Wall of Love sont récupérés automatiquement depuis la fiche Google du client.
+          Fedde Business Technologies s&apos;engage à fournir un service de qualité mais ne saurait être tenue responsable des avis publiés par des tiers sur Google. Les avis affichés sur le site et le Wall of Love sont récupérés automatiquement depuis la fiche Google du client.
         </p>
       </section>
 
       <section style={{ marginBottom: '40px' }}>
         <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '16px', color: '#667eea' }}>9. Droit applicable</h2>
         <p style={{ lineHeight: '1.8', color: '#444' }}>
-          Les présentes conditions sont régies par le droit français. Tout litige sera soumis aux tribunaux compétents du ressort du siège social de Codaya Agency.
+          Les présentes conditions sont régies par le droit français. Tout litige sera soumis aux tribunaux compétents du ressort du siège social de Fedde Business Technologies.
         </p>
       </section>
 

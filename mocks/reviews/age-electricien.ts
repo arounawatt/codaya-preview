@@ -60,5 +60,6 @@ export const companyData: CompanyData = {
   phone: '+33646092006',
   googleMapUrl: 'https://www.google.com/maps/place//data=!4m2!3m1!1s0x47e5d92b2cc7e0cd:0x68ca2d9c81dd8248?sa=X&ved=1t:8290&ictx=111',
   city: 'Villemoisson-sur-Orge',
+  email: 'contact@age-electricien.fr',
   website: '',
 }

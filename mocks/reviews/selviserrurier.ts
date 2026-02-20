@@ -16,4 +16,5 @@ export const companyData: CompanyData = {
   phone: '+33618171514',
   googleMapUrl: 'https://www.google.com/search?sa=X&sca_esv=e8bb71c9cc7ce2dd&rlz=1C5CHFA_enFR1164FR1164&sxsrf=ANbL-n7I1aTA4TabnMaRaQ6iG5SPya3mnQ:1770839344147&q=Selvi+Serrurier+Avis&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDY0NzAzNTM0N7OwtDA3sTC0sNjAyPiKUSQ4NacsUyE4taiotCgztUjBsSyzeBErVmEABgkaqkkAAAA&rldimm=13170656176898748188&tbm=lcl&hl=fr-FR&ved=2ahUKEwiisb_QmtKSAxVbVKQEHT87IHQQ9fQKegQIKBAG&biw=1512&bih=792&dpr=2#lkt=LocalPoiReviews',
   city: 'Draveil',
+  email: 'contact@selviserrurier.fr',
 }

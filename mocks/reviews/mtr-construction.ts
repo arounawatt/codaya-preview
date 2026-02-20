@@ -18,5 +18,6 @@ export const companyData: CompanyData = {
   phone: '+33665418050',
   googleMapUrl: 'https://www.google.com/maps?hl=fr&gl=fr&um=1&ie=UTF-8&fb=1&sa=X&ftid=0x47e5d9611e1ae991:0x9f2e05c82723725b',
   city: 'Sainte-Geneviève-des-bois',
+  email: 'contact@mtr-construction.fr',
   website: '',
 }
