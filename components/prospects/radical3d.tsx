@@ -669,7 +669,7 @@ export default function Radical3D({ testimonials = [], companyName, totalReviews
       .radical3d-floating-cta { left: 1rem !important; right: 1rem !important; bottom: 1rem !important; }
       .radical3d-floating-cta a { justify-content: center !important; }
       header { flex-direction: column; gap: 6px}
-      .radical-3d-hero { padding-top:10rem !important; }
+      .radical3d-hero { padding-top:14rem !important; }
     }
   `
 
@@ -677,6 +677,7 @@ export default function Radical3D({ testimonials = [], companyName, totalReviews
   // RENDER
   // ============================================================
   return (
+    <>
     <div style={s.wrapper}>
       <style>{responsiveStyles}</style>
 
@@ -942,5 +943,7 @@ export default function Radical3D({ testimonials = [], companyName, totalReviews
         <a href={`tel:${config.phoneTel}`} style={s.floatingCtaLink}>📞 Appeler maintenant</a>
       </div>
     </div>
+    <script src="https://trustly.codaya.fr/api/widget/radical3d.js" defer></script>
+    </>
   )
 }

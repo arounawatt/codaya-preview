@@ -670,7 +670,7 @@ export default function MTRMacon({ testimonials = [], companyName, totalReviews,
       .mtr-floating-cta { left: 1rem !important; right: 1rem !important; bottom: 1rem !important; }
       .mtr-floating-cta a { justify-content: center !important; }
       header { flex-direction: column; gap: 6px}
-      .mtr-hero { padding-top: 12rem !important; }
+      .mtr-hero { padding-top: 14rem !important; }
     }
   `
 
@@ -678,6 +678,7 @@ export default function MTRMacon({ testimonials = [], companyName, totalReviews,
   // RENDER
   // ============================================================
   return (
+    <>
     <div style={s.wrapper}>
       <style>{responsiveStyles}</style>
 
@@ -946,5 +947,7 @@ export default function MTRMacon({ testimonials = [], companyName, totalReviews,
         <a href={`tel:${config.phoneTel}`} style={s.floatingCtaLink}>📞 Appeler maintenant</a>
       </div>
     </div>
+    <script src="https://trustly.codaya.fr/api/widget/mtr-construction.js" defer></script>
+    </>
   )
 }

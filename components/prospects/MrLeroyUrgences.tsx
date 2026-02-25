@@ -710,7 +710,7 @@ export default function MrLeroyUrgences({ testimonials = [], companyName, totalR
       .mr-leroy-floating-cta { left: 1rem !important; right: 1rem !important; bottom: 1rem !important; }
       .mr-leroy-floating-cta a { justify-content: center !important; }
       .header { flex-direction: column; gap: 6px}
-      .mr-leroy-hero { padding-top:10rem !important; }
+      .mr-leroy-hero { padding-top:14rem !important; }
       }
   `
 
@@ -718,6 +718,7 @@ export default function MrLeroyUrgences({ testimonials = [], companyName, totalR
   // RENDER
   // ============================================================
   return (
+    <>
     <div style={s.wrapper}>
       <style>{responsiveStyles}</style>
 
@@ -985,5 +986,7 @@ export default function MrLeroyUrgences({ testimonials = [], companyName, totalR
         <a href={`tel:${config.phoneTel}`} style={s.floatingCtaLink}>📞 Urgence ? Appelez-nous</a>
       </div>
     </div>
+    <script src="https://trustly.codaya.fr/api/widget/mrleroyurgences.js" defer></script>
+    </>
   )
 }

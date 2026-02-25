@@ -167,6 +167,12 @@ export function generateWidgetScript(slug: string, apiBase: string): string {
   btnEl.appendChild(badge);
   root.appendChild(btnEl);
 
+  /* ── close on outside click ── */
+  document.addEventListener('click',function(e){
+    console.log('exit clicked')
+    if(open&&!host.contains(e.target)){open=false;hidePanel();}
+  });
+
   /* ── panel (built after data loads) ── */
   var panelEl=null;
   var reviewEls=[];

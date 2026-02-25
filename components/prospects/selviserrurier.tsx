@@ -49,7 +49,7 @@ export default function SelviSerrurier({ testimonials = [], companyName, totalRe
   // ============================================================
   const config = {
     name: companyName ?? 'Selvi Serrurier',
-    tagline: 'Dépannage Serrurerie 24h/24',
+    tagline: 'Dépannage 24h/24',
     phone: '06 18 17 15 14',
     phoneTel: '+33618171514',
     rating: score !== undefined ? score.toFixed(1).replace('.', ',') : '4,5',
@@ -669,7 +669,7 @@ export default function SelviSerrurier({ testimonials = [], companyName, totalRe
       .selvi-floating-cta { left: 1rem !important; right: 1rem !important; bottom: 1rem !important; }
       .selvi-floating-cta a { justify-content: center !important; }
       header { flex-direction: column; gap: 6px}
-      .selvi-hero { padding-top:10rem !important; }
+      .selvi-hero { padding-top:14rem !important; }
     }
   `
 
