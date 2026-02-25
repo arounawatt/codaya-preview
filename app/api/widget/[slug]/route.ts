@@ -19,9 +19,11 @@ export async function GET(
   }
 
   // Determine API base from request headers
-  const proto = _request.headers.get('x-forwarded-proto') ?? 'http'
   const host = _request.headers.get('host') ?? 'localhost:3000'
-  const apiBase = `${proto}://${host}`
+  const isLocal = host.includes('localhost')
+  const apiBase = isLocal
+    ? `http://${host}`
+    : 'https://trustly.codaya.fr'
 
   const js = generateWidgetScript(slug, apiBase)
 
