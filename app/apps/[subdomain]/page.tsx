@@ -1,6 +1,5 @@
 // apps/[subdomain]/page.tsx
 import MrLeroyUrgences from '@/components/prospects/MrLeroyUrgences'
-import { notFound } from 'next/navigation'
 import Radical3D from '@/components/prospects/radical3d';
 import SelviSerrurier from '@/components/prospects/selviserrurier';
 import ArtisanDuvalCouvreur from '@/components/prospects/artisanduval';
@@ -8,6 +7,7 @@ import AGEElectricien from '@/components/prospects/age-electricien';
 import MTRMacon from '@/components/prospects/mtr-construction';
 import Dasto from '@/components/prospects/dasto';
 import { getCompanyBySlug } from '@/lib/services/reviews';
+import type { Metadata } from 'next';
 
 const clients = {
   'mrleroyurgences': MrLeroyUrgences,
@@ -19,13 +19,34 @@ const clients = {
   'dasto': Dasto,
 }
 
-const clientWithNoScore = [Dasto];
-
 interface PageProps {
   params: Promise<{
     subdomain: keyof typeof clients;
   }>;
 }
+
+const clientsMeta: Partial<Record<string, { title: string; description: string }>> = {
+  'dasto': {
+    title: 'Dasto Delivery — Livraison rapide de porte à porte',
+    description: 'Dasto est un service de livraison rapide pour les particuliers, petits commerçants et vendeurs marketplace. Envoyez ou récupérez un colis, un meuble ou un objet en quelques clics — contactez-nous sur WhatsApp.',
+  },
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { subdomain } = await params;
+  const cleanedSubdomain = subdomain.replace('-preview', '');
+  const meta = clientsMeta[cleanedSubdomain];
+  if (!meta) return {};
+  return {
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+    },
+  };
+}
+
 
 export default async function Page({ params }: PageProps) {
   const { subdomain } = await params;
