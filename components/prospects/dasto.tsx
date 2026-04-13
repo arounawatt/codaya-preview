@@ -173,7 +173,7 @@ export default function Dasto() {
             <div style={{ textAlign: 'center', marginBottom: '64px' }}>
               <div style={{ display: 'inline-block', background: 'rgba(139,92,246,0.08)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: '50px', padding: '5px 18px', color: '#8b5cf6', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '16px' }}>Pour qui ?</div>
               <h2 className="dasto-section-title" style={{ fontSize: '2.8rem', fontWeight: 800, letterSpacing: '-1px', marginBottom: '14px' }}>À qui s&apos;adresse Dasto ?</h2>
-              <p style={{ color: '#6b7280', fontSize: '1.1rem', maxWidth: '560px', margin: '0 auto' }}>Une solution pensée pour ceux que les services classiques ignorent.</p>
+              <p style={{ color: '#6b7280', fontSize: '1.1rem', maxWidth: '560px', margin: '0 auto' }}>Une alternative simple et humaine pour vos envois spécifiques, qu'ils soient petits ou volumineux.</p>
             </div>
 
             <div className="dasto-audience-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
@@ -181,7 +181,7 @@ export default function Dasto() {
                 {
                   num: '01', icon: '👤', title: 'Les particuliers',
                   desc: 'Envoyez ou récupérez un objet, un colis, un meuble ou un bagage — sans vous déplacer.',
-                  tags: ['Colis & sacs', 'Meubles & électros', 'Objets Leboncoin', 'Envois familiaux'],
+                  tags: ['Colis & sacs', 'Meubles & électroménager', 'Objets Leboncoin', 'Envois familiaux'],
                 },
                 {
                   num: '02', icon: '🏪', title: 'Les commerçants',
@@ -190,7 +190,7 @@ export default function Dasto() {
                 },
                 {
                   num: '03', icon: '📲', title: 'Les vendeurs marketplace',
-                  desc: 'Leboncoin, Vinted, Facebook Marketplace — Dasto gère la récupération et la livraison pour vous.',
+                  desc: 'Leboncoin, Vinted, Facebook Marketplace — Dasto gère l\'enlèvement et la livraison pour vous.',
                   tags: ['Leboncoin', 'Facebook Marketplace', 'Vinted', 'Vente directe'],
                 },
               ].map((card, i) => (
@@ -224,7 +224,7 @@ export default function Dasto() {
               <div className="dasto-step-line" style={{ position: 'absolute', top: '28px', left: 'calc(12.5% + 14px)', right: 'calc(12.5% + 14px)', height: '2px', background: 'linear-gradient(90deg, #8b5cf6, #7c3aed)', opacity: 0.3, zIndex: 0 }}></div>
 
               {[
-                { n: '1', icon: '📝', title: 'Passez votre demande', desc: 'Adresses de départ et d\'arrivée via WhatsApp en quelques secondes.' },
+                { n: '1', icon: '📝', title: 'Envoyez votre demande', desc: 'Indiquez les adresses de départ et d\'arrivée via WhatsApp en quelques secondes.' },
                 { n: '2', icon: '📦', title: 'Décrivez l\'objet', desc: 'Photo, poids, fragilité — on s\'adapte à chaque envoi.' },
                 { n: '3', icon: '💶', title: 'Obtenez un prix', desc: 'Estimation rapide et paiement simple.' },
                 { n: '4', icon: '🚚', title: 'Livraison effectuée', desc: 'Un livreur récupère et livre à l\'adresse indiquée.' },
@@ -248,7 +248,7 @@ export default function Dasto() {
               <div style={{ display: 'inline-block', background: 'rgba(139,92,246,0.08)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: '50px', padding: '5px 18px', color: '#8b5cf6', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '20px' }}>Pourquoi nous ?</div>
               <h2 style={{ fontSize: '2.8rem', fontWeight: 800, letterSpacing: '-1px', lineHeight: 1.15, marginBottom: '24px' }}>Ce qui rend Dasto différent.</h2>
               <p style={{ color: '#6b7280', lineHeight: 1.8, fontSize: '1rem', marginBottom: '36px' }}>
-                Dasto n&apos;est pas une plateforme classique. C&apos;est une société de transport rapide qui répond aux besoins que les grands acteurs ignorent.
+                Dasto n'est pas une simple plateforme, mais une société de transport réactive qui s'adapte précisément à chacun de vos besoins de livraison.
               </p>
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="dasto-wa-btn" style={{ padding: '14px 30px', background: 'linear-gradient(135deg, #25d366, #128c7e)', color: '#fff', fontWeight: 700, fontSize: '0.95rem', borderRadius: '50px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', boxShadow: '0 8px 30px rgba(37,211,102,0.25)', transition: 'all 0.3s ease' }}>
                 💬 Essayer maintenant
@@ -261,7 +261,7 @@ export default function Dasto() {
                 { icon: '⚡', title: 'Livraison rapide', desc: 'Interventions dans les meilleurs délais, sans attendre.' },
                 { icon: '🤝', title: 'Flexible & sans contrainte', desc: 'Pas d\'horaires rigides — on s\'adapte à vous.' },
                 { icon: '🗺️', title: 'Vraiment porte à porte', desc: 'Récupération et livraison à domicile, sans effort de votre part.' },
-                { icon: '🛡️', title: 'Objets fragiles bienvenus', desc: 'Meubles, électros, objets délicats — manipulés avec soin.' },
+                { icon: '🛡️', title: 'Objets fragiles bienvenus', desc: 'Meubles, électroménager, objets délicats — ils sont manipulés avec soin.' },
                 { icon: '📱', title: 'Suivi en temps réel', desc: 'Notification à chaque étape de votre livraison.' },
                 { icon: '💬', title: 'Contact direct WhatsApp', desc: 'Joignables immédiatement, sans formulaire ni plateforme.' },
               ].map((f, i) => (
