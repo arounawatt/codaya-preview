@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 export default function Dasto() {
-  const whatsappUrl = `https://wa.me/33664029563?text=Bonjour%2C%20je%20souhaite%20faire%20une%20demande%20de%20livraison%20avec%20Dasto.`;
+  const whatsappUrl = `https://wa.me/33756949976?text=Bonjour%2C%20je%20souhaite%20faire%20une%20demande%20de%20livraison%20avec%20Dasto.`;
 
   return (
     <>
